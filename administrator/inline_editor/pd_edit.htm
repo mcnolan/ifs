@@ -1,0 +1,103 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+<STYLE>
+  BODY {margin: 0pt; padding: 0pt; border: none}
+  IFRAME {width: 100%; height: 100%; border: none}
+</STYLE>
+<SCRIPT>
+// Default format is WYSIWYG HTML
+var format="HTML"
+
+// Set the focus to the editor
+function setFocus() {
+ textEdit.focus()
+}
+
+// Execute a command against the editor
+// At minimum one argument is required. Some commands
+// require a second optional argument:
+// eg., ("formatblock","<H1>") to make an H1
+
+function execCommand(command) {
+textEdit.focus()
+ if (format=="HTML") {
+  var edit = textEdit.document.selection.createRange()
+  if (arguments[1]==null)
+   edit.execCommand(command)
+  else
+   edit.execCommand(command,false, arguments[1])
+  edit.select()
+  textEdit.focus()
+ }
+}
+
+// Selects all the text in the editor
+function selectAllText(){
+
+var edit = textEdit.document;
+
+edit.execCommand('SelectAll');
+textEdit.focus();
+
+}
+
+function newDocument() {
+	textEdit.document.open()
+	textEdit.document.write("")
+	textEdit.document.close()
+	textEdit.focus()
+}
+
+function loadDoc(htmlString) {
+	textEdit.document.open()
+	textEdit.document.write(htmlString)
+	textEdit.document.close()
+}
+// Initialize the editor with an empty document
+function initEditor() {
+	var htmlString = parent.document.all.EditorValue.value;
+	textEdit.document.designMode="On"
+	textEdit.document.open()
+	textEdit.document.write(htmlString)
+	textEdit.document.close()
+	textEdit.focus()
+}
+
+// Swap between WYSIWYG mode and raw HTML mode
+function swapModes() {
+	if (format=="HTML") {
+		textEdit.document.body.innerText = textEdit.document.body.innerHTML
+		textEdit.document.body.style.fontFamily = "monospace"
+		textEdit.document.body.style.fontSize = "10pt"
+		format="Text"
+ 	}
+	else {
+   		textEdit.document.body.innerHTML = textEdit.document.body.innerText
+   		textEdit.document.body.style.fontFamily = ""
+   		textEdit.document.body.style.fontSize =""
+   		format="HTML"
+ 	}
+	// textEdit.focus()
+	var s = textEdit.document.body.createTextRange()
+	s.collapse(false)
+	s.select()
+}
+
+window.onload = initEditor
+
+
+</SCRIPT>
+<!-- Turn off the outer body scrollbars. The IFRAME editbox will display its 
+     own scrollbars when necessary -->
+<BODY SCROLL=No>
+
+<IFRAME ID=textEdit>
+</IFRAME>
+<script>
+textEdit.focus();
+</script>
+</body>
+</html>

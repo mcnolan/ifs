@@ -1,0 +1,115 @@
+1.13n PATCH - December 2009
+
+~ Disclaimer ~
+This is an unofficial patch done by Nolan. It is a complilation of various fixes, improvements and tweaks i have made to IFS over the past few years. No changes are guaranteed, nor approved by the owner, Frank Anon.
+
+~ Individual Files ~
+
+includes/addslash.php
+- Fixed spelling error
+
+administrator/index.php & administrator/index2.php
+- Fixed login problem when reg_globals is off
+
+administrator/menubar/cancel.php
+- Fixed problem where Cancel button no longer worked with reg_globals off
+
+configuration.php
+- Added $fleetdesc variable
+- Added $fleetbanner variable
+- Fixed email from constant
+- Changed the Site Name variable to something a little more sensible
+- Changed Path settings to use other variables
+
+classes/html/body.php
+- Removed "Monkey Fleet" and added $fleetname
+- Removed obsidian.php include, replaced with configuation option
+- Added custom css classes for stats display and fleet description
+
+classes/html/components.php
+- Removed mambo "Register" Link
+
+tf/lib-ship.php
+- Removed Hard coded email address
+- Fixed bug where ships not in a TG could not be updated
+
+body.php
+- Fixed Character count to ignore deleted characters
+- Added News placeholder image
+
+themes/default-head.php
+- Added image code for $fleetbanner variable
+
+themes/default-main.php
+- Added placeholder images for motd, menu and date
+
+themes/default.css
+- Modified to be a little more cliche "star trek" by default
+
+leftComponent.php
+- Added search placeholder image
+
+rightComponent.php
+- Added Login placeholder image
+
+apps/app.php & apps/co_app.php & apps/ship_app.php
+- Removed all html colors
+
+~ Installer ~
+- Fixed R & D Menu installation problem
+- Added helpful default news message
+- Fixed problem with checked out mambo modules being installed
+- Removed left Search Box install, fairy useless with IFS, can be re-published from Mambo admin.
+- Tweaked various defaults to make them more useful
+- Added rankset generator
+- Added more friendly installer, moved old installer to manual_install.php
+- Un"OF"ed some menu items
+- Added some useful defaults for common Starship Classes
+- Modified the default menu items to include Ship Listing and Ship Database
+- Added several missing image folders that the system will look for
+
+
+
+1.12 PATCH - October 22, 2004
+- fixed Academy tools (again), adding entries in the switchboard files
+- fixed issue with removed COs being auto-banned
+- fixed bug with viewing a ship's past reports
+
+1.11 PATCH - June 3, 2004
+- fixed Academy and Awards so that the COs/TFCOs can actually use the tools
+  (added missing files)
+- removed hard-coded Obsidian Fleet names & emails from Awards area
+- fixed email validity check for new account creation
+- characters table fix in database
+  (pending field was named "Y-m-d" for some odd reason when doing the db dump)
+- fix in configuration file, making some variables into constants
+- fix in Academy Instructor tools (updating course progress, failing / dropping
+  out students)
+- fix in assigning userlevels when changing TGCOs
+
+1.1 RELEASE - May 11, 2004
+- added Academy, Awards, and TGCO userlevels and tools
+- optimised ShipDB tech search
+- added wildcard IPs to banlist
+- fixed FCOps access level
+- added TF-based stats
+- added email validity check
+
+1.0 FINAL PATCH A - January 27, 2004
+- removed hard-coded Obsidian Fleet email addresses when submitting a
+  Task Force report; now forwards the report to everyone in the user
+  database with Triad and FCOps flags set.
+- fixed bug with adding new COs
+
+1.0 FINAL RELEASE - January 15, 2004
+- added pending rank as a constant instead of hardcoded ID#
+- added check to make sure new ships have a class
+- added checks to make sure new items are assigned a type in shipdb
+- fixed massive bracketing / indenting problems in tf/ships.php
+- added check disallowing zero as a TF/TG number
+- fixed bug displaying TGs in FCOps Tools
+- fixed register_globals=off support
+- added stripslashes to a few places (ie whosonline, birthday)
+- various typo fixes
+
+1.0 BETA RELEASE - December 25, 2003

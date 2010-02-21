@@ -1,0 +1,50 @@
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+The IFS software is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of ERCHANTABILITY or FITNESS FOR
+A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+A copy of the GNU General Public License, version 2 can be found at
+doc/GPL.txt
+
+
+The Mambo Site Server Open Source Edition Version 4.0.12, upon which portions of
+this software were based, contains the following notice:
+---
+Mambo Site Server Open Source Project Version 4.0
+Dynamic portal server and Content managment engine
+27-11-2002
+
+Copyright (C) 2000 - 2002 Miro International Pty Ltd
+Distributed under the terms of the GNU General Public License
+This software may be used without warrany provided these statements are left
+intact and a "Powered By Mambo" appears at the bottom of each HTML page.
+This code is available at http://sourceforge.net/projects/mambo
+
+Site Name: Mambo Site Server Open Source Project Version 4.0
+Original Developers: Danny Younes - danny@miro.com.au
+                     Nicole Anderson - nicole@miro.com.au
+Version #: 4.0
+---
+
+
+Portions of this software were inspired by The Task Force Management Software,
+which is copyright of The PBeM Software Federation, and is thus acknowledged.
+
+
+The Ship Database is copyright (C) 2003 Frank Anon, created for Obsidian Fleet
+RPG.  It is distributed under the terms of the GNU General Public License.
+
+
+The Open Positions List is copyright (C) 2002, 2003 Frank Anon.  It is
+distributed under the terms of the GNU General Public License.
+
+
+The modification and integration of these softwares, as well as the creation of
+any and all new components, was done by Frank Anon of Obsidian Fleet RPG unless
+explicitly credited above.
+This package as a whole is copyright (C) 2003 Obsidian Fleet RPG, and is
+distributed under the terms of the GNU General Public License.

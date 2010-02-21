@@ -1,0 +1,26 @@
+Commanding Officer
+Executive Officer
+Chief Flight Control Officer (Helmsman)
+Chief Diplomatic Officer
+Chief Operations Officer
+Assistant Operations Officer
+Boatswain
+Quartermaster
+Chief Intelligence Officer
+Chief Tactical/Security Officer
+Assistant Tactical/Security Officer
+Master-at-Arms
+Chief Engineering Officer
+Assistant Engineering Officer
+Engineer's Mate
+Chief Medical Officer
+Assistant Medical Officer
+Physician's Mate
+Chief Counselor
+Chief Science Officer
+Assistant Science Officer
+Scientist's Mate
+Marine CO
+Marine XO
+Marine Fighter Pilot Element Leader
+Chief Marine NCO

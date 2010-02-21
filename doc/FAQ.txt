@@ -1,0 +1,90 @@
+How do I add... menu items / news stories / articles / FAQs / web links /
+newsflashes / banners
+	Go into Mambo Admin (Triad menu) and play around in there.
+
+How do I add Task Forces / Task Groups?
+	FCOps Tools
+
+How do I add ships?
+	TFCO tools
+
+How do I add characters?
+	CO Menu -> Update Manifest
+
+How do I add / remove ranks from the listing?  Why are the rank images broken?
+	Ranks are listed in the {spre}_rank table.  Images are broken since we don't
+    have a set of pips to distribute... see the bug tracking page for details.
+
+Why aren't ship banners displaying?
+	IFS assumes that ship banners are in images/ships/ and will automatically
+    tack that on to the image field.  So, if you enter "ship.jpg" in the image
+    field, the banner should be at images/ships/ship.jpg
+
+Why aren't TF/TG banners displaying on the Ship Listing?
+	IFS assumes banner locations and names using the following convention:
+   	Task Force banner at images/tfbanners/tf(tf number).jpg
+    Task Group banner at images/tfbanners/tg(tf number)-(tg number).jpg
+
+Where's the link to the ship listing?
+	Create your own link - index.php?option=ships
+    And you can specify TF/TG... ie index.php?option=ships&tf=1&tg=1
+    (and even better to use &amp; instead of plain & for XHTML compliance)
+
+What about the link to the ship DB?
+	Create your own link again - index.php?option=shipdb
+
+Why are there more goodies on the OFHQ site?  Why aren't they in the release?
+	This is a fully-functional public release of IFS; however I never said that
+    everything on OFHQ would be released, nor am I under any obligation to
+    do so.  You've got almost all of the core features of IFS, though.
+    UPDATE (05/11/04): I've included just about everything in the 1.1 release;
+    				   it's a lot easier for me to keep OFHQ sync'ed with the
+                       public release this way.
+
+Isn't that against the GPL?  Don't you have to release everything?
+	Nope.  The GPL governs *how* you release stuff, not *whether* you release
+    it.  See http://www.gnu.org/licenses/gpl-faq.html if you don't believe me.
+
+How do I change the default positions on a ship?
+	tf/positions.txt
+
+How do I change the possible status descriptions for a ship?
+	tf/status.txt
+
+Wouldn't it make more sense to put those in a SQL table?
+	Yes.
+
+Why is everything empty?  There's nothing in the shipdb, task forces, etc, etc.
+	This is for *your* fleet.  Get your own info! =)
+
+How do I add/remove a menu item on the CO, TFCO, etc, menu?
+	There's no utility for it at the moment.  Go directly into the mySQL table
+    {mpre}menu; the "menutype" field indicates which menu; the "name", "link",
+    and "inuse" fields are self-explanatory.  The other fields are not used.
+
+How do I add/remove/rename a userlevel?
+	Again, you need to go directly to the database for that. In the {spre}flags
+    table, you can change the "name" field.  The letter flag is hard-coded into
+    the IFS pages and referenced in the user table, so I'd suggest that you
+    don't change those unless you understand the code.
+
+How do I use images for menu items instead of text links?
+	If you use <img src> HTML tags as the name of the menu items, I *think* it
+    should work.  But I've never tried it.
+
+You mention XHTML earlier.  Is IFS XML-compliant?
+	Not yet; that's one of my goals.
+
+When is the next version coming out?
+	Have you seen my to-do list?  Both the RPG and the real-life versions?
+
+What will be in upcoming versions?
+	See http://www.obsidianfleet.net/ifs/ and
+    http://www.obsidianfleet.net/phpBB/viewforum.php?f=41; I'll be putting up
+    an "Upcoming Features" page soon (if it's not already up).
+
+Why isn't my question answered here?
+	I can't read minds.  Post questions on the IFS Developers Forums at
+    http://www.obsidianfleet.net/phpBB/viewforum.php?f=41 and maybe it'll make
+    it to the next version's FAQ.  Or, post a Tracker item on our SourceForge
+    page (http://sourceforge.net/projects/ifs/).

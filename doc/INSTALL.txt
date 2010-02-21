@@ -1,0 +1,52 @@
+OBSIDIAN FLEET INTEGRATED FLEET SYSTEM
+
+VERSION 1.13n
+RELEASE December 2009
+
+INSTALLATION INSTRUCTIONS
+---
+
+
+As of version 1.13n, there are 2 options for installing IFS.
+
+
+Option 1 : Browser install
+1 - CHMOD configuration.php to 0777. This will allow the installer to write to your config file.
+
+2 - In your web browser, open install.php and enter your details as instructed. This script will write a configuration file for you and install the database.
+
+Option 2 : Manual Install
+
+1 - Open configuration.php and enter, at the very least, your mySQL server,user, password, and database.
+    You'll probably also want to change the email settings, fleet name, and URL.
+
+2 - Run the file manual_install.php.  This will set up your mySQL databases. 
+
+
+After Installing
+
+3 - Now you've got some CHMOD'ing to do.  The following files/folders need to
+	be world-writable (0777):
+    	errorlog
+        images/stories/	  (if you want to be able to use Mambo's upload feature)
+	change configuration.php to 0755 if you used install option 1
+
+4 - Change the default login.  admin/admin will give you full administrator access, but don't leave it at that.  Unless you want to give the world admin access...
+
+5 - The base installation of IFS is done!  There is, of course, a lot of
+	customizing that I'll bet you want to do... but that's for another time.
+
+If you have any problems or questions, drop by the IFS Forums at
+http://www.obsidianfleet.net/phpBB/viewforum.php?f=41 and leave a post.  Also,
+as a favour that I ask of people who have successfully installed and used IFS,
+please check the forums once in a while and help answer questions; I receive too
+many help requests, and I could use a hand in responding to them all! =)
+
+Frank Anon
+
+Addendum, December 2009
+
+Should Option 1 not work for you, give Option 2 a try. If both do not succeed for some reason, please don't hesitate to use the forum mentioned by Frank. I keep an eye on it, and will provide assistance to those who need it.
+
+Good Luck,
+Nolan

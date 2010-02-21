@@ -1,0 +1,59 @@
+Yes, the default theme is *very* ugly.  Generic black-text-white-background.
+But no fear: IFS is very versatile when it comes to skins and themes!
+
+The key lies in one folder... themes/
+When you go to the theme-changing area (Mambo admin -> Main -> Theme Manager),
+you'll be presented with some themes to choose from.  Ignore the "theme preview"
+unless someone's had the time to take a screenshot of the theme...
+But now, the million-dollar question: how do you add a theme?  And, before that,
+how do you *make* a theme?
+
+As I said, the answer lies in the themes/ folder.  If you go there, you'll see
+three files... default.css, default-head.php, and default-main.php.  Notice a
+pattern?  Yep, those are the three files that make up the "default" theme.
+The Theme Manager will even check that folder to see what themes are present...
+there's no need to install a theme, apart from placing it in the folder.
+
+(theme name).css
+    This is where the CSS for the theme lives.  It's a bit of a mess right now,
+    but cleaning it up is pretty high on my to-do list... the tags you should be
+    most concerned about are a, articlehead, componentHeading, h1, h2,
+                                               highlight, newsarticle, p, smallgrey, td
+    Not to say that the rest aren't important... but those are the "main" ones
+    that get used the most.  It'll probably be a while before you get everything
+    perfect... sorry =(
+
+(theme name)-head.php
+    Basically contains the page headers and the fleet banner.  Make sure you
+    update the CSS (the theme manager won't automatically use your new CSS
+    file!).  The default theme identifies this as a XHTML page; IFS isn't fully
+    compliant yet, but I'm working on XHTML 1.0 Transition compliance.
+    The three variables, $newstop $logintop and $searchtop, can contain the path
+    to image files for section headings (can you guess which ones?), if you
+    choose to use them.
+    The 'if ($pop != "y")' statement at the bottom is also important: it makes
+    sure your banner does *not* display on popup pages, since that just clutters
+    things.
+
+(theme name)-main.php
+    The layout of this page is really up to you... it's the include statements
+    that make the page work.  The following files need to be included:
+        pathway.php                    Keep this right above the menu...
+        mainmenu.php                Yep, it's the main menu.  How did you guess??
+        leftComponent.php	Other components that appear on the left column
+        newsflash.php		The one-liner newsflashes
+        mainbody.php		The meat of the page
+        rightComponent               Stuff on the right column
+        banners.php                    One random banner, from the list specified in
+                                                    Mambo admin
+
+    Other notes... left/right Components are specified in Mambo admin.  You
+    *could* publish everything on the left side, and not even need to include
+    the rightComponent.php file (or vice versa).
+
+There isn't too much for me to say about themes, apart from what's already been
+said.  If you want to tweak the layout of mainbody stuff, most of it is in
+classes/html/.  HTML for IFS components isn't so nicely seperated (it's also on
+my to-do list); you'll have to go into tf/ and figure out where stuff is.
+
+Enjoy!
