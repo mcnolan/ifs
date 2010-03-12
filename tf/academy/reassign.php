@@ -2,21 +2,32 @@
 /***
   * INTEGRATED FLEET MANAGEMENT SYSTEM
   * OBSIDIAN FLEET
-  * http://www.obsidianfleet.net
+  * http://www.obsidianfleet.net/ifs/
   *
   * Developer:	Frank Anon
   * 	    	fanon@obsidianfleet.net
   *
-  * Version:	1.0 BETA
-  * Release Date: December 25, 2003
+  * Updated By: David VanScott
+  *		davidv@anodyne-productions.com
   *
-  * Copyright (C) 2000 - 2003
+  * Version:	1.14n
+  * Release Date: June 3, 2004
+  * Patch 1.13n:  December 2009
+  * Patch 1.14n:  March 2010
+  *
+  * Copyright (C) 2003-2004 Frank Anon for Obsidian Fleet RPG
   * Distributed under the terms of the GNU General Public License
   * See doc/LICENSE for details
   *
+  * This file contains code from Mambo Site Server 4.0.12
+  * Copyright (C) 2000 - 2002 Miro International Pty Ltd
+  *
   * Date:	6/13/04
   * Comments: Admin interface for Academy settings and stuffs
- ***/
+  *
+  * See CHANGELOG for patch details
+  *
+***/
 
 if (!defined("IFS"))
 	echo "Hacking attempt!";
@@ -83,7 +94,7 @@ else
 		
 		echo '</select>';
 		
-	    $qry = "SELECT a.*, b.* FROM {$spre}acad_instructors AS a, {$spre}characters AS b WHERE a.active = 1 AND (a.course = 3 OR a.course = 12 OR a.course = 13 OR a.course = 14) AND a.cid = b.id";
+	    $qry = "SELECT a.*, b.* FROM {$spre}acad_instructors AS a, {$spre}characters AS b WHERE a.active = 1 AND a.cid = b.id";
 		$result = $database->openConnectionWithReturn($qry);
 		
 		while ($fetch = mysql_fetch_array($result)) {
@@ -128,7 +139,7 @@ else
 		{
 			$qry = "UPDATE {$spre}acad_students SET inst = $instructor WHERE cid = $info[0] AND course = $info[1]";
 			$result = $database->openConnectionWithReturn($qry);
-			$rows = mysql_affected_rows($result);
+			//$rows = mysql_affected_rows($result);
 			
 			echo 'Student instructor was successfully updated! <a href="index.php?option=ifs&task=academy&action=reassign">Click here</a> to reassign another student.';
 		}

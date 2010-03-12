@@ -7,15 +7,25 @@
   * Developer:	Frank Anon
   * 	    	fanon@obsidianfleet.net
   *
-  * Version:	1.11
+  * Updated By: Nolan
+  *		john.pbem@gmail.com
+  *
+  * Version:	1.14n (Nolan Ed.)
   * Release Date: June 3, 2004
+  * Patch 1.13n:  December 2009
+  * Patch 1.14n:  March 2010
   *
   * Copyright (C) 2003-2004 Frank Anon for Obsidian Fleet RPG
   * Distributed under the terms of the GNU General Public License
   * See doc/LICENSE for details
   *
+  * This file contains code from Mambo Site Server 4.0.12
+  * Copyright (C) 2000 - 2002 Miro International Pty Ltd
+  *
   * Date:	6/03/04
   * Comments: Install file
+  *
+  * See CHANGELOG for patch details
   *
  ***/
 
@@ -538,6 +548,7 @@ else
     INSERT INTO `{$mpre}menu` VALUES (NULL, 'Task Group CO', 'Ship Listing', 'index.php?option=ifs~task=tgco~action=listing', NULL, 0, NULL, 0, 0, NULL, NULL, NULL, 0, 0);
     INSERT INTO `{$mpre}menu` VALUES (NULL, 'Task Group CO', 'TF Stats', 'index.php?option=ifs~task=tgco~action=stats', '', 0, 0, 0, 0, 0, '00:00:00', '', 0, 0);
     INSERT INTO `{$mpre}menu` VALUES (NULL, 'Academy', 'Academy Admin', 'index.php?option=ifs~task=academy~action=admin', '', 0, 0, 0, 0, 0, '00:00:00', '', 0, 0);
+    INSERT INTO `{$mpre}menu` VALUES (NULL, 'Academy', 'Reassign Students', 'index.php?option=ifs~task=academy~action=reassign', '', 0, 0, 0, 0, 0, '00:00:00', '', 0, 0);
     INSERT INTO `{$mpre}menu` VALUES (NULL, 'Academy', 'Class List', 'index.php?option=ifs~task=academy~action=inst', '', 0, 0, 0, 0, 0, '00:00:00', '', 0, 0);
     INSERT INTO `{$mpre}menu` VALUES (NULL, 'Academy', 'Waiting List', 'index.php?option=ifs~task=academy~action=wait', '', 0, 0, 0, 0, 0, '00:00:00', '', 0, 0);
     INSERT INTO `{$mpre}menu` VALUES (NULL, 'Academy', 'Master List', 'index.php?option=ifs~task=academy~action=list', '', 0, 0, 0, 0, 0, '00:00:00', '', 0, 0);

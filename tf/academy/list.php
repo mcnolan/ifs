@@ -2,22 +2,31 @@
 /***
   * INTEGRATED FLEET MANAGEMENT SYSTEM
   * OBSIDIAN FLEET
-  * http://www.obsidianfleet.net
+  * http://www.obsidianfleet.net/ifs/
   *
   * Developer:	Frank Anon
   * 	    	fanon@obsidianfleet.net
   *
-  * Version:	1.11
+  * Updated By: Nolan
+  *		john.pbem@gmail.com
+  *
+  * Version:	1.14n (Nolan Ed.)
   * Release Date: June 3, 2004
+  * Patch 1.13n:  December 2009
+  * Patch 1.14n:  March 2010
   *
   * Copyright (C) 2003-2004 Frank Anon for Obsidian Fleet RPG
   * Distributed under the terms of the GNU General Public License
   * See doc/LICENSE for details
   *
+  * This file contains code from Mambo Site Server 4.0.12
+  * Copyright (C) 2000 - 2002 Miro International Pty Ltd
+  *
   * Date:	5/04/04
   * Comments: List Academy students
+  * See CHANGELOG for patch details
+  *
  ***/
-
 if (!defined("IFS"))
 	echo "Hacking attempt!";
 else
@@ -52,13 +61,23 @@ else
 	    while (list($courseid, $coursename) = mysql_fetch_array($result))
 	    {
 	        echo " | ";
-	        if ($lib == $courseid)
-	            echo $coursename;
-	        else
+	        if ($lib == $courseid) {
+	            	echo $coursename;
+			$cname = $coursename;
+	      	} else {
 	            echo "<a href=\"index.php?option=ifs&amp;task=academy&amp;action=list&amp;lib=$courseid\">$coursename</a>";
+		}
 	    }
-
-	    echo "<h1>$coursename</h1>\n";
+		if(isset($cname)) {
+		 	echo "<h1>$cname</h1>\n";	
+			echo "<a href=\"index.php?option=ifs&amp;task=academy&amp;action=list&amp;lib=".$_GET['lib']."";
+			if($_GET['view'] == "current") {
+				echo "\">Show All Students</a>";
+			} else {
+				echo "&amp;view=current\">Show Current Students Only</a>";
+			}
+		}
+			echo "<br/><br/>";
 
 	    if (!$lib)
 	    {
@@ -73,15 +92,16 @@ else
 	        </tr>
 
 	        <?php
-            $qry = "SELECT st.id, st.sdate, co.course, co.name, ch.name,
+		$qry = "SELECT st.id, st.sdate, co.course, co.name, ch.name,
                         sh.name, c2.name
                     FROM {$spre}acad_students st, {$spre}acad_courses co,
                         {$spre}characters ch, {$spre}characters c2,
                         {$spre}ships sh, {$spre}acad_instructors i
                     WHERE st.status='p' AND st.course=co.course
                         AND co.section='0' AND st.cid=ch.id
-                        AND ch.ship=sh.id AND st.inst=i.id AND i.cid=c2.id
-                    ORDER BY st.sdate";
+                        AND ch.ship=sh.id AND st.inst=i.id AND i.cid=c2.id";
+		if($_GET['view'] == "current") { $qry .= " AND edate is null"; }
+          	$qry .= " ORDER BY st.sdate";
 	        $result = $database->openConnectionWithReturn($qry);
 	        while (list($sid, $sdate, $cid, $cname, $character, $ship, $inst)
 	            = mysql_fetch_array($result) )
@@ -113,8 +133,9 @@ else
 	                FROM {$spre}acad_students st, {$spre}acad_instructors i,
 	                    {$spre}ships sh, {$spre}characters c2, {$spre}characters ch
 	                WHERE st.course='$lib' AND st.cid=ch.id AND ch.ship=sh.id
-	                    AND st.inst=i.id AND i.cid=c2.id
-	                ORDER BY st.sdate DESC";
+	                    AND st.inst=i.id AND i.cid=c2.id";
+			if($_GET['view'] == "current") { $qry .= " AND edate is null"; }
+	                $qry .= " ORDER BY st.sdate DESC";
 	        $result = $database->openConnectionWithReturn($qry);
 	        while (list($sid, $sdate, $edate, $status, $inst, $character, $ship, $cid)
 	            = mysql_fetch_array($result) )

@@ -2,6 +2,4 @@
 - Track down the last of those problematic OF variables
 - Find the last few hard coded Ship IDs
 - Move all mail content into text files (So people can actually edit them)
-- Potential Academy fixes
--- Layout issues with table overlap
--- Moving students
+- Potential Academy fixes /done

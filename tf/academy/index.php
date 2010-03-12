@@ -2,20 +2,28 @@
 /***
   * INTEGRATED FLEET MANAGEMENT SYSTEM
   * OBSIDIAN FLEET
-  * http://www.obsidianfleet.net
+  * http://www.obsidianfleet.net/ifs/
   *
   * Developer:	Frank Anon
   * 	    	fanon@obsidianfleet.net
   *
-  * Version:	1.11
+  * Updated By: Nolan
+  *		john.pbem@gmail.com
+  *
+  * Version:	1.14n (Nolan Ed.)
   * Release Date: June 3, 2004
+  * Patch 1.13n:  December 2009
+  * Patch 1.14n:  March 2010
   *
   * Copyright (C) 2003-2004 Frank Anon for Obsidian Fleet RPG
   * Distributed under the terms of the GNU General Public License
   * See doc/LICENSE for details
   *
-  * Date:	5/03/04
-  * Comments: Academy tools
+  * This file contains code from Mambo Site Server 4.0.12
+  * Copyright (C) 2000 - 2002 Miro International Pty Ltd
+  *
+  *
+  * See CHANGELOG for patch details
   *
  ***/
 
@@ -48,6 +56,9 @@ else
             case 'wait':
             	include("tf/academy/wait.php");
                 break;
+	case 'reassign':
+		include("tf/academy/reassign.php");
+		break;
 	        default:
 	        	include("tf/academy/list.php");
 	            break;

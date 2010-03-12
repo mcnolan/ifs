@@ -1,3 +1,33 @@
+1.14n PATCH - March 2010
+
+tf/academy/index.php
+- Added reassign direction
+
+tf/academy/instructor.php
+- Rewrote broken query for class lists
+
+tf/academy/save.php
+- Removed redundant header
+
+tf/academy/admin.php
+- Added direct link to student list
+
+tf/academy/list.php
+- Added unused course name header
+- Added link to sort class lists into current and all students
+
+tf/co/academy.php
+- Added missing </table> tag
+- Fixed error when administrators try and get access to a ships academy history
+
+tf/co/index.php
+- Fixed shipid passing error when logged as admin
+
+manual_install.php
+- Added menu entry for Reassigning students
+
++tf/academy/reassign.php
+
 1.13n PATCH - December 2009
 
 ~ Disclaimer ~
