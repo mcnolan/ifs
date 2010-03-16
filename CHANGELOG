@@ -1,5 +1,13 @@
 1.14n PATCH - March 2010
 
+Mail Reassignment
+- Most email content has been moved from being hardcoded, and is now included from files in the includes/mail directory. One file per email message.
+
+~Individual File Updates
+
+SessionCookie.php
+- Fixed initial session storage problems with some versions of mySQL
+
 tf/academy/index.php
 - Added reassign direction
 
@@ -27,6 +35,7 @@ manual_install.php
 - Added menu entry for Reassigning students
 
 +tf/academy/reassign.php
++includes/mail/*
 
 1.13n PATCH - December 2009
 

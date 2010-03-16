@@ -342,20 +342,7 @@ else
                     list ($instemail) = mysql_fetch_array($result);
 			        $name = get_usertype($database, $mpre, $spre, 0, $uflag);
 
-					$subject = "Obsidian Fleet Academy Graduation";
-                    $body = "Course: $coursename\n";
-                    $body .= "Grade: " . $mark[$stuid] . "\n";
-                    $body .= "Character: $rank $charname\n";
-                    $body .= "Ship: $ship\n\n";
-                    $body .= "Instructor: $name - $instemail\n\n";
-                    $body2 = $body . "This message was automatically generated.\n\n";
-
-	                $headers = "From: " . email-from . "\n";
-	                $headers .= "X-Sender:<OFHQ> \n";
-	                $headers .= "X-Mailer: PHP\n";
-	                $headers .= "Return-Path: <webmaster@obsidianfleet.net>\n";
-
-					mail($coemail, $subject, $body2, $headers);
+			require_once "includes/mail/academy_graduation_co.mail.php";
 
                     // Service record entry
                     $name = addslashes($name);
@@ -444,20 +431,7 @@ else
                     list ($instemail) = mysql_fetch_array($result);
 			        $name = get_usertype($database, $mpre, $spre, 0, $uflag);
 
-					$subject = "Obsidian Fleet Academy Failure";
-                    $body = "Course: $coursename\n";
-                    $body .= "Grade: " . $mark[$stuid] . "\n";
-                    $body .= "Character: $rank $charname\n";
-                    $body .= "Ship: $ship\n\n";
-                    $body .= "Instructor: $name - $instemail\n\n";
-                    $body2 = $body . "This message was automatically generated.\n\n";
-
-	                $headers = "From: " . email-from . "\n";
-	                $headers .= "X-Sender:<OFHQ> \n";
-	                $headers .= "X-Mailer: PHP\n";
-	                $headers .= "Return-Path: <webmaster@obsidianfleet.net>\n";
-
-					mail($coemail, $subject, $body2, $headers);
+			require_once "includes/mail/acdademy_failure_co.mail.php";
 
                     // Service record entry
                     $name = addslashes($name);
@@ -523,18 +497,7 @@ else
                 list ($instemail) = mysql_fetch_array($result);
                 $name = get_usertype($database, $mpre, $spre, 0, $uflag);
 
-                $subject = "Obsidian Fleet Academy Drop-out";
-                $body = "Course: $coursename\n";
-                $body .= "Character: $rank $charname\n";
-                $body .= "Ship: $ship\n\n";
-                $body .= "Instructor: $name - $instemail\n\n";
-                $body2 = $body . "This message was automatically generated.\n\n";
-
-                $headers = "From: " . email-from . "\n";
-                $headers .= "X-Mailer:PHP\n";
-                $headers .= "Return-Path: <webmaster@obsidianfleet.net>\n";
-
-                mail($coemail, $subject, $body2, $headers);
+                require_once "includes/mail/academy_dropout_co.mail.php";
 
                 // Service record entry
                 $name = addslashes($name);

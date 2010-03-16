@@ -7,12 +7,20 @@
   * Developer:	Frank Anon
   * 	    	fanon@obsidianfleet.net
   *
-  * Version:	1.11
+  * Updated By: Nolan
+  *		john.pbem@gmail.com
+  *
+  * Version:	1.14n (Nolan Ed.)
   * Release Date: June 3, 2004
+  * Patch 1.13n:  December 2009
+  * Patch 1.14n:  March 2010
   *
   * Copyright (C) 2003-2004 Frank Anon for Obsidian Fleet RPG
   * Distributed under the terms of the GNU General Public License
   * See doc/LICENSE for details
+  *
+  * This program contains code from Mambo Site Server 4.0.12
+  * Copyright (C) 2000 - 2002 Miro International Pty Ltd
   *
   * Date:	12/22/03
   * Comments: Submits & files monthly report
@@ -62,13 +70,6 @@ else
 	list($rank) = mysql_fetch_array($result4);
     $commoff = $rank . " " . $coname . " (" . $coemail . ")";
 
-	$mailersubject = "Monthly Report for the " . $sname;
-	$mailerbody = "Ship Name: " . $sname . " ({$sid})\n";
-	$mailerbody .= "Commanding Officer: " . $commoff . ".\n";
-	$mailerbody .= "Ship's Website: " . $site . "\n";
-	$mailerbody .= "Ship's Status: " . $status . "\n";
-	$mailerbody .= "\n\nCrew List:\n";
-
 	$crewcount = 0;
 	while ( list($cid,$cname,$crank,$pos,$player)=mysql_fetch_array($result) )
     {
@@ -84,20 +85,7 @@ else
 
 		$crewlisting .= $rank . " " . $cname . "\n" . $pos . "\n" . $email . "\n\n";
 	}
-	$mailerbody .= $crewlisting;
-
-	$mailerbody .= "Simm Information:\n";
-	$mailerbody .= "~~~~~~~~~~~~~~~~~\n";
-	$mailerbody .= "Current Mission Title: " . $mission . "\n\n";
-	$mailerbody .= "Mission Description:\n";
-	$mailerbody .= "$missdesc\n\n";
-	$mailerbody .= "What have you done this month to improve the quality of your sim?\n";
-	$mailerbody .= "$improvement\n\n\n";
-
-	$mailerbody .= "Misc Information:\n";
-	$mailerbody .= "~~~~~~~~~~~~~~~~~\n";
-	$mailerbody .= "Additional Comments:\n";
-	$mailerbody .= "$comments\n\n";
+	require_once "includes/mail/report_ship.mail.php";
 
 	$header = "From: " . $coemail;
 	mail ($recip, $mailersubject, $mailerbody, $header);

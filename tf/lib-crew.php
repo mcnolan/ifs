@@ -2,17 +2,25 @@
 /***
   * INTEGRATED FLEET MANAGEMENT SYSTEM
   * OBSIDIAN FLEET
-  * http://www.obsidianfleet.net
+  * http://www.obsidianfleet.net/ifs/
   *
   * Developer:	Frank Anon
   * 	    	fanon@obsidianfleet.net
   *
-  * Version:	1.11
+  * Updated By: Nolan
+  *		john.pbem@gmail.com
+  *
+  * Version:	1.14n (Nolan Ed.)
   * Release Date: June 3, 2004
+  * Patch 1.13n:  December 2009
+  * Patch 1.14n:  March 2010
   *
   * Copyright (C) 2003-2004 Frank Anon for Obsidian Fleet RPG
   * Distributed under the terms of the GNU General Public License
   * See doc/LICENSE for details
+  *
+  * This program contains code from Mambo Site Server 4.0.12
+  * Copyright (C) 2000 - 2002 Miro International Pty Ltd
   *
   * Date:	5/05/04
   * Comments: Functions for viewing & manipulating crew entries
@@ -249,18 +257,7 @@ function crew_delete_save ($database, $mpre, $spre, $id, $shipid, $reason, $ufla
     if ($recip)
     {
     	$recip = substr($recip, 2);
-	    $subject = "Obsidian Fleet Academy - Student Removal";
-	    $body = "A student in one of your classes has been removed from ";
-	    $body .= "his/her ship.\n\n";
-	    $body .= "Character: $charname\n\n";
-	    $body .= "This message was automatically generated.\n\n";
-
-	    $headers = "From: " . email-from . "\n";
-	    $headers .= "X-Sender:<OFHQ> \n";
-	    $headers .= "X-Mailer: PHP\n";
-	    $headers .= "Return-Path: <webmaster@obsidianfleet.net>\n";
-
-	    mail($recip, $subject, $body, $headers);
+	require_once "includes/mail/academy_shipremoved.mail.php";
     }
 
 	// if it's a co or xo, remove them from the ship listing too
@@ -356,19 +353,7 @@ function crew_delete_save ($database, $mpre, $spre, $id, $shipid, $reason, $ufla
 	$result = $database->openConnectionWithReturn($qry);
 	list ($coemail) = mysql_fetch_array($result);
 
-   	$mailersubject = "JAG - Player Removed on " . $sname;
-	$mailerbody = "Ship Name: " . $sname . "\n";
-	$mailerbody .= "TF/TG: {$tfid} / {$tgid}\n";
-	$mailerbody .= "Crew: " . $cname . "\n";
-	$mailerbody .= "Rank: ". $rankname . "\n";
-	$mailerbody .= "Email: " . $pemail . "\n";
-	$mailerbody .= "Performed by: " . $coname . " ({$coemail})\n\n";
-	$mailerbody .= "Reason:\n";
-	$mailerbody .= $reason;
-	$mailerbody .= "\n\nThis message was automatically generated.";
-
-	$header = "From: ". email-from;
-	mail ($jag, $mailersubject, $mailerbody, $header);
+   	require_once "includes/mail/jag_playerremove.mail.php";
 
 	// We should also add this to the service record
 	$coname = addslashes($coname);
@@ -719,34 +704,7 @@ function crew_edit_save ($database, $spre, $mpre, $add, $position, $otherpos, $n
 
 				$name = stripslashes($name);
 
-				$recipient = "name <$email>";
-				$subject = "Obsidian Fleet New User Details";
-				$message = "Hello $name,\n\n";
-				$message .= "You have received this email because you have requested to join an Obsidian \n";
-				$message .= "Fleet simm. As such, the system has automatically generated a user ID and\n";
-				$message .= "password for you, in order to allow you to access features on the Obsidian\n";
-				$message .= "Fleet website. Your user name and password is:\n\n";
-				$message .= "Username - $username\n";
-				$message .= "Password - $pass\n\n";
-				$message .= "If you would like to find out more information on what your Obsidian Fleet\n";
-				$message .= "ID can do, please read the article located at\n";
-				$message .= "http://www.obsidianfleet.net/index.php?option=faq&Itemid=5&topid=0\n";
-				$message .= "For any other questions, please email webmaster@obsidianfleet.net\n\n";
-				$message .= "If you have an Obsidian Fleet ID already, and would like to combine them\n";
-				$message .= "into one ID, please email webmaster@obsidianfleet.net\n\n";
-				$message .= "You have been added because you requested to join the crew of an Obsidian Fleet simm.\n";
-				$message .= "If you have received this email in error, simply ignore it. Please do not\n";
-				$message .= "respond to this email as it is automatically generated for information\n";
-				$message .= "purposes only.\n\n";
-				$message .= "Thanks for simming in Obsidian Fleet,\n";
-				$message .= "Obsidian Fleet webmaster\n\n";
-
-				$headers .= "From: " . email-from . "\n";
-				$headers .= "X-Sender:<OFHQ> \n";
-				$headers .= "X-Mailer: PHP\n"; // mailer
-				$headers .= "Return-Path: <webmaster@obsidianfleet.net>\n";  // Return path for errors
-
-				mail($recipient, $subject, $message, $headers);
+				require_once "includes/mail/crew_newplayer.mail.php";
 echo $message;
 				$qry2 = "INSERT INTO {$spre}logs
                 		 (date, user, action, comments)
@@ -900,19 +858,7 @@ echo $message;
 				    $result = $database->openConnectionWithReturn($qry);
 				    list ($jag) = mysql_fetch_array($result);
 
-					$mailersubject = "JAG - Player Demoted on " . $sname;
-					$mailerbody = "Ship Name: " . $sname . "\n";
-					$mailerbody .= "Crew: " . $cname . "\n";
-					$mailerbody .= "Old Rank: " . $oldrank . "\n";
-					$mailerbody .= "New Rank: " . $newrank . "\n";
-					$mailerbody .= "Email: " . $pemail . "\n";
-					$mailerbody .= "Performed by: " . $coname . "\n\n";
-					$mailerbody .= "Reason:\n";
-					$mailerbody .= $reason;
-					$mailerbody .= "\n\nThis message was automatically generated.";
-
-					$header = "From: " . email-from;
-					mail ($jag, $mailersubject, $mailerbody, $header);
+					require_once "includes/mail/jag_playerdemoted.mail.php";
 
                     $entry = "Demotion: " . $cname;
                 }

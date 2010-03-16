@@ -2,17 +2,25 @@
 /***
   * INTEGRATED FLEET MANAGEMENT SYSTEM
   * OBSIDIAN FLEET
-  * http://www.obsidianfleet.net
+  * http://www.obsidianfleet.net/ifs/
   *
   * Developer:	Frank Anon
   * 	    	fanon@obsidianfleet.net
   *
-  * Version:	1.11
+  * Updated By: Nolan
+  *		john.pbem@gmail.com
+  *
+  * Version:	1.14n (Nolan Ed.)
   * Release Date: June 3, 2004
+  * Patch 1.13n:  December 2009
+  * Patch 1.14n:  March 2010
   *
   * Copyright (C) 2003-2004 Frank Anon for Obsidian Fleet RPG
   * Distributed under the terms of the GNU General Public License
   * See doc/LICENSE for details
+  *
+  * This program contains code from Mambo Site Server 4.0.12
+  * Copyright (C) 2000 - 2002 Miro International Pty Ltd
   *
   * Date:	12/22/03
   * Comments: View Pending Awards to approve/deny them
@@ -86,14 +94,7 @@ else
 		    $result = $database->openConnectionWithReturn($qry);
             list ($date, $email, $aname, $rank, $cname, $sname) = mysql_fetch_array($result);
 
-		   	$mailersubject = "$fleetname Award Status";
-			$mailerbody = "On " . date("F j, Y", $date) . " you nominated $rank $cname ($sname) for the $aname.\n\n";
-	        $mailerbody .= "the nomination has been reviewed, and we are glad to inform you that the award as been approved\n\n";
-	        $mailerbody .= "thanks for taking good care of your crew!\n";
-			$mailerbody .= "\n\nthis message was automatically generated.";
-
-			$header = "From: " . email-from;
-			mail ($email, $mailersubject, $mailerbody, $header);
+		   	require_once "includes/mail/award_accepted.mail.php";
         }
         elseif ($approve == "deny")
         {
@@ -106,15 +107,7 @@ else
 		    $result = $database->openConnectionWithReturn($qry);
             list ($date, $email, $aname, $rank, $cname, $sname) = mysql_fetch_array($result);
 
-		   	$mailersubject = "$fleetname Award Status";
-			$mailerbody = "On " . date("F j, Y", $date) . " you nominated $rank $cname ($sname) for the $aname.\n\n";
-	        $mailerbody .= "the nomination has been reviewed, but unfortunately we must inform you that the award was denied\n\n";
-	        $mailerbody .= "there are many reasons for which an award might be denied, including an incomplete submission or simply too much competition for the award.";
-			$mailerbody .= "For more information regarding this nomination, please email $webmasteremail\n";
-			$mailerbody .= "\n\nthis message was automatically generated.";
-
-			$header = "From: " . email-from;
-			mail ($email, $mailersubject, $mailerbody, $header);
+		   	require_once "includes/mail/award_denied.mail.php";
 		}
         redirect("");
     }

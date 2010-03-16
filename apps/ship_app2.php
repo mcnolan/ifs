@@ -7,12 +7,20 @@
   * Developer:	Frank Anon
   * 	    	fanon@obsidianfleet.net
   *
-  * Version:	1.11
+  * Updated By: Nolan
+  *		john.pbem@gmail.com
+  *
+  * Version:	1.14n (Nolan Ed.)
   * Release Date: June 3, 2004
+  * Patch 1.13n:  December 2009
+  * Patch 1.14n:  March 2010
   *
   * Copyright (C) 2003-2004 Frank Anon for Obsidian Fleet RPG
   * Distributed under the terms of the GNU General Public License
   * See doc/LICENSE for details
+  *
+  * This program contains code from Mambo Site Server 4.0.12
+  * Copyright (C) 2000 - 2002 Miro International Pty Ltd
   *
   * Date:	4/12/04
   * Comments: Ship application
@@ -135,14 +143,8 @@ if ($Character_Bio == "")
 
 if ($quit != "1")
 {
-	$to = webmasteremail . ", $Email";
-	$subject = "Ship Application";
-	$headers = "From: " . emailfrom . "\nX-Mailer:PHP\nip: $ip";
 
-	$body = "Simm application received -- thank you!\n";
-	$body .= "Please note that this is not an acceptance letter.  After reviewing the application, we will email you our decision.\n\n";
-
-	$body .= "Ship Name: $ship\n";
+	$body = "Ship Name: $ship\n";
 	$body .= "Ship Class: $shipclass\n";
 	$body .= "Website: $website\n";
 	$body .= "Time Active: $active\n";
@@ -184,7 +186,7 @@ if ($quit != "1")
 
 	$body = stripslashes($body);
 
-	mail ($to, $subject, $body, $headers);
+	require_once "includes/mail/shipapp.mail.php";
 
 
 	// Save it in the db

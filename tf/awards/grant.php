@@ -2,17 +2,25 @@
 /***
   * INTEGRATED FLEET MANAGEMENT SYSTEM
   * OBSIDIAN FLEET
-  * http://www.obsidianfleet.net
+  * http://www.obsidianfleet.net/ifs/
   *
   * Developer:	Frank Anon
   * 	    	fanon@obsidianfleet.net
   *
-  * Version:	1.11
+  * Updated By: Nolan
+  *		john.pbem@gmail.com
+  *
+  * Version:	1.14n (Nolan Ed.)
   * Release Date: June 3, 2004
+  * Patch 1.13n:  December 2009
+  * Patch 1.14n:  March 2010
   *
   * Copyright (C) 2003-2004 Frank Anon for Obsidian Fleet RPG
   * Distributed under the terms of the GNU General Public License
   * See doc/LICENSE for details
+  *
+  * This program contains code from Mambo Site Server 4.0.12
+  * Copyright (C) 2000 - 2002 Miro International Pty Ltd
   *
   * Date:	6/03/04
   * Comments: Allows Awards Director to nominate characters for awards
@@ -120,30 +128,9 @@ else
         $result = $database->openConnectionWithReturn($qry);
         list ($email) = mysql_fetch_array($result);
 
-        $mailersubject = "Congratulations - You've Received An Award!";
-        $mailerbody = "Hello, $cname, and congratulations!\n\n";
-        $mailerbody .= "You've just been awarded the $fleetname $aname.  The Awards Director had this to say about you:\n";
-        $mailerbody .= "---\n";
-        $mailerbody .= $reason;
-        $mailerbody .= "\n---\n\n";
-        $mailerbody .= "Head on over to {$live_site}/index.php?option=ifs&task=common&action=common&lib=areason&rid=$rid to receive your award!\n";
-        $mailerbody .= "\n\nThis message was automatically generated.";
+        require_once "includes/mail/award_player.mail.php";
 
-        $header = "From: " . email-from;
-        mail ($email, $mailersubject, $mailerbody, $header);
-
-        $mailersubject = "One Of Your Crew Received An Award!";
-        $mailerbody = "Hello,\n\n";
-        $mailerbody .= "A member of your crew, $cname, has just been awarded the $fleetname $aname!\n";
-        $mailerbody .= "You had this to say about him/her:\n";
-        $mailerbody .= "---\n";
-        $mailerbody .= $reason;
-        $mailerbody .= "\n---\n\n";
-        $mailerbody .= "Head on over to {$live_site}/index.php?option=ifs&task=common&action=common&lib=areason&rid=$rid to view the award!\n";
-        $mailerbody .= "\n\nThis message was automatically generated.";
-
-        $header = "From: " . email-from;
-        mail ($coemail, $mailersubject, $mailerbody, $header);
+        require_once "includes/mail/award_co.mail.php";
 
 	    echo "<h1>Fleet Awards</h1>\n";
 	    echo "<p>And the award has been granted!  Poof!  Like magic!</p><br /><br />\n";

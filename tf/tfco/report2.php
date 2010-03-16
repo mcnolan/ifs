@@ -7,12 +7,20 @@
   * Developer:	Frank Anon
   * 	    	fanon@obsidianfleet.net
   *
-  * Version:	1.11
+  * Updated By: Nolan
+  *		john.pbem@gmail.com
+  *
+  * Version:	1.14n (Nolan Ed.)
   * Release Date: June 3, 2004
+  * Patch 1.13n:  December 2009
+  * Patch 1.14n:  March 2010
   *
   * Copyright (C) 2003-2004 Frank Anon for Obsidian Fleet RPG
   * Distributed under the terms of the GNU General Public License
   * See doc/LICENSE for details
+  *
+  * This program contains code from Mambo Site Server 4.0.12
+  * Copyright (C) 2000 - 2002 Miro International Pty Ltd
   *
   * Date:	1/27/04
   * Comments: Submits & files monthly report
@@ -66,30 +74,7 @@ else
     while (list ($email) = mysql_fetch_array($result))
     	$recip .= $email . ", ";
 
-	$mailersubject = "Monthly Report for Task Force " . $tfid;
-	$mailerbody = "Task Force: $tfid - $tfname\n";
-    $mailerbody .= "CO: $tfco\n";
-	$mailerbody .= "\n";
-	$mailerbody .= "Total Ships: $ships\n";
-	$mailerbody .= "    CO'ed Ships: $coships\n";
-	$mailerbody .= "        Active Ships: $actships\n";
-	$mailerbody .= "        Inactive Ships: $inships\n";
-	$mailerbody .= "    Open Ships: $openships\n";
-	$mailerbody .= "\n";
-	$mailerbody .= "Total Characters: $totalchar\n";
-	$mailerbody .= "Average Characters per COed ship: $avchar\n";
-	$mailerbody .= "\n";
-	$mailerbody .= "Promotions:\n";
-	$mailerbody .= "$promotions\n\n";
-	$mailerbody .= "New COs:\n";
-	$mailerbody .= "$newco\n\n";
-	$mailerbody .= "Resigned COs:\n";
-	$mailerbody .= "$resigned\n\n";
-	$mailerbody .= "Website Updates:\n";
-	$mailerbody .= "$webupdates\n\n";
-	$mailerbody .= "Other Notes:\n";
-	$mailerbody .= "$other\n\n";
-	$mailerbody .= "Submitted " . date("F j, Y") . "\n";
+	require_once "includes/mail/report_tfco.mail.php";
 
 
 	$header = "From: " . $tfco . " <" . $tfcoemail . ">";

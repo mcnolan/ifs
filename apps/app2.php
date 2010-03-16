@@ -7,12 +7,20 @@
   * Developer:	Frank Anon
   * 	    	fanon@obsidianfleet.net
   *
-  * Version:	1.11
+  * Updated By: Nolan
+  *		john.pbem@gmail.com
+  *
+  * Version:	1.14n (Nolan Ed.)
   * Release Date: June 3, 2004
+  * Patch 1.13n:  December 2009
+  * Patch 1.14n:  March 2010
   *
   * Copyright (C) 2003-2004 Frank Anon for Obsidian Fleet RPG
   * Distributed under the terms of the GNU General Public License
   * See doc/LICENSE for details
+  *
+  * This program contains code from Mambo Site Server 4.0.12
+  * Copyright (C) 2000 - 2002 Miro International Pty Ltd
   *
   * Date:	4/12/04
   * Comments: Processes crew applications
@@ -195,10 +203,7 @@ if ($quit != "1")
 	if (!$uid)
     {
 	    list($username, $pass, $uid) = make_uid ($database, $mpre, $Name, $Characters_Name, $Email);
-	    $message = "Our records indicate that you do not currently have a character (based on your email address).  Here is your login information for the {$fleetname} site: {$live_site}\n\n";
-	    $message .= "Username - $username\n";
-	    $message .= "Password - $pass\n\n";
-	    $message .= "If you already have a login, and wish to consolidate your logins, please email " . webmasteremail . "\n\n";
+	    require_once "includes/mail/app_newplayer.mail.php";
 
 	    $neednewuser = "1";
 	    $details = "UID created: " . $uid . "<br />\n";
@@ -279,37 +284,21 @@ if ($quit != "1")
 	$subject = stripslashes($subject);
 
 	// This one goes to the applicant:
-	$realbody = "Thank you for submitting an application!  Your application will be reviewed, and you will be contacted shortly.\n";
-
-	if ($neednewuser)
-	    $realbody .= $message;
-
-	$realbody .= "Here is a copy of your application:\n\n";
-	$realbody .= $body;
-	$realbody .= "\nYou are being sent this email because you requested to join the crew of a simm.\n";
-	$realbody .= "If this is in error, please notify " . webmasteremail . "\n";
-	mail ($Email, $subject, $realbody, $headers);
+	require_once "includes/mail/app_playercopy.mail.php";
 	$allemails = $Email;
 
 	// This one goes to the CO:
 	if ($Ship != "Any")
     {
-	    $realbody = "This character has been automatically added to your ship's manifest.\n";
-	    $realbody .= "Please login to update the character's rank and position.\n\n";
-
-	    $realbody .= $body;
-	    mail ($coemail, $subject, $realbody, $headers);
+	    require_once "includes/mail/app_cocopy.mail.php";
 	    $allemails .= ", " . $coemail;
 	}
     else
     {
-	    $realbody = "This character is currently pending, waiting to be assigned.\n";
-
-	    $realbody .= $body;
-	    mail (webmasteremail, $subject, $realbody, $headers);
+	    require_once "includes/mail/app_pending.mail.php";
 	    $allemails .= ", " . $coemail;
 	}
-
+	
 	// Save it in the db
 	$body = addslashes($body);
 	$nowtime = time();

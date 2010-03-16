@@ -7,14 +7,19 @@
   * Developer:	Frank Anon
   * 	    	fanon@obsidianfleet.net
   *
-  * Version:	1.11
+  * Updated By: Nolan
+  *		john.pbem@gmail.com
+  *
+  * Version:	1.14n (Nolan Ed.)
   * Release Date: June 3, 2004
+  * Patch 1.13n:  December 2009
+  * Patch 1.14n:  March 2010
   *
   * Copyright (C) 2003-2004 Frank Anon for Obsidian Fleet RPG
   * Distributed under the terms of the GNU General Public License
   * See doc/LICENSE for details
   *
-  * This file based on code from Mambo Site Server 4.0.12
+  * This program contains code from Mambo Site Server 4.0.12
   * Copyright (C) 2000 - 2002 Miro International Pty Ltd
   *
   * Date:	1/6/04
@@ -198,17 +203,7 @@ function saveNewNews($userhtml, $database, $uid, $option, $newstitle, $newssecti
 
             $newstitle = stripslashes($newstitle);
             $author = stripslashes($author);
-            $subject = "New User Submitted News Story";
-            $message .= "Hello Admin Person,\n\n";
-            $message .= "A new user news story '$newstitle' has been submitted by '$author' for the '$live_site' website.\n";
-            $message .= "Please go to '$live_site/administrator/' to view and approve this news story\n\n";
-            $message .= "Please do not respond to this message as it is automatically generated and is for information purposes only\n";
-
-            $headers .= "From: " . emailfrom . "\n";
-            $headers .= "X-Sender: <$live_site> \n";
-            $headers .= "X-Mailer: PHP\n"; // mailer
-            $headers .= "Return-Path: <$email>\n";  // Return path for errors
-            mail($recip, $subject, $message, $headers);
+            require_once "includes/mail/news_submit.mail.php";
         }
         echo "<SCRIPT> alert('Thanks for your submission. Your news story will now be reviewed by \\nan administrator before being posted to the site'); document.location.href='index.php?option=$option';</SCRIPT>";
     }
@@ -254,17 +249,7 @@ function saveNewArticle($userhtml, $database, $uid, $option, $arttitle, $artsect
             while ( list($adminEmail) = mysql_fetch_array($result) )
             	$recipient .= ", " . $adminEmail;
 
-            $subject = "New User Submitted Article";
-            $message .= "Hello Admin,\n\n";
-            $message .= "A new user article '$arttitle' has been submitted by '$author' for the '$live_site' website.\n";
-            $message .= "Please go to '$live_site/administrator' to view and approve this article\n\n";
-            $message .= "Please do not respond to this message as it is automatically generated and is for information purposes only\n";
-
-            $headers .= "From: " . emailfrom . "\n";
-            $headers .= "X-Sender: <$live_site> \n";
-            $headers .= "X-Mailer: PHP\n"; // mailer
-            $headers .= "Return-Path: <$email>\n";  // Return path for errors
-            mail($recipient, $subject, $message, $headers);
+            require_once "includes/mail/article.submit.mail.php";
         }
 
         echo "<SCRIPT> alert('Thanks for your submission. Your article will now be reviewed by \\nan administrator before being posted to the site'); document.location.href='index.php?option=$option';</SCRIPT>";
@@ -307,17 +292,7 @@ function saveNewFAQ($userhtml, $database, $uid, $option, $faqtitle, $faqsection,
             while ( list($adminEmail) = mysql_fetch_array($result) )
             	$recipient .= ", " . $adminEmail;
 
-            $subject = "New User Submitted FAQ";
-            $message .= "Hello Admin,\n\n";
-            $message .= "A new FAQ '$faqtitle' has been submitted by '$author' for the '$live_site' website.\n";
-            $message .= "Please go to $live_site/administrator to view and approve this FAQ\n\n";
-            $message .= "Please do not respond to this message as it is automatically generated and is for information purposes only\n";
-
-            $headers .= "From: " . emailfrom . "\n";
-            $headers .= "X-Sender: \n";
-            $headers .= "X-Mailer: PHP\n"; // mailer
-            $headers .= "Return-Path: <$email>\n";  // Return path for errors
-            mail($recipient, $subject, $message, $headers);
+            require_once "includes/mail/faq_submit.mail.php";
         }
         echo "<SCRIPT> alert('Thanks for your submission. Your FAQ will now be reviewed by \\nan administrator before being posted to the site'); document.location.href='index.php?option=$option';</SCRIPT>";
     }
@@ -358,17 +333,7 @@ function saveNewLink($userhtml, $database, $uid, $option, $linktitle, $linksecti
             while ( list($adminEmail) = mysql_fetch_array($result) )
             	$recipient .= ", " . $adminEmail;
 
-            $subject = "New User Submitted Weblink";
-            $message .= "Hello Admin,\n\n";
-            $message .= "A new web link '$linktitle' has been submitted by '$author' for the '$live_site' website.\n";
-            $message .= "Please go to $live_site/administrator to view and approve this link\n\n";
-            $message .= "Please do not respond to this message as it is automatically generated and is for information purposes only\n";
-
-            $headers .= "From: " . emailfrom . "\n";
-            $headers .= "X-Sender: \n";
-            $headers .= "X-Mailer: PHP\n"; // mailer
-            $headers .= "Return-Path: <$email>\n";  // Return path for errors
-            mail($recipient, $subject, $message, $headers);
+		require_once "includes/mail/link_submit.mail.php";
         }
         echo "<SCRIPT> alert('Thanks for your submission. Your web link will now be reviewed by \\nan administrator before being posted to the site'); document.location.href='index.php?option=$option';</SCRIPT>";
     }
