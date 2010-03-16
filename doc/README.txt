@@ -1,7 +1,7 @@
 OBSIDIAN FLEET INTEGRATED FLEET SYSTEM
 
-VERSION 1.13n
-RELEASE December 2009
+VERSION 1.14n
+RELEASE March 2010
 
 So, you've decided to give IFS a go, eh?  Well, I hope you like it!
 
@@ -38,3 +38,12 @@ All subsequent work on IFS was done without the support, knowledge or approval o
 Good Luck,
 Nolan
 
+Addendum, March 2010
+
+More bug fixes, correcting flaws within the Academy section, and moving email contents into more easily editable files for end-user editing.
+Special thanks to David VanScott, who has graciously lent OF's code for moving Academy students between instructors.
+
+As always, all subsequent work on IFS was done without the support, knowledge or approval of Frank Anon, the orginal Designer. I keep an eye on the IFS forums at the Obsidian Fleet Forums and will respond to any support requests for this version there.
+
+Enjoy,
+Nolan

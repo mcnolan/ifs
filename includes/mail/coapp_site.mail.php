@@ -1,4 +1,5 @@
 <?
+//Command application, administration copy
 $realbody = "Please forward this app.\n\n";
 $realbody .= $body;
 $subject = "CO App";

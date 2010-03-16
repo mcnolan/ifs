@@ -1,4 +1,5 @@
 <?
+//User submitted new Article for moderation
 $subject = "New User Submitted Article";
 $message .= "Hello Admin,\n\n";
 $message .= "A new user article '$arttitle' has been submitted by '$author' for the '$live_site' website.\n";

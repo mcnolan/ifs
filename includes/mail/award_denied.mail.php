@@ -1,4 +1,5 @@
 <?
+//Co receives this when an award submission was denied.
 $mailersubject = "$fleetname Award Status";
 $mailerbody = "On " . date("F j, Y", $date) . " you nominated $rank $cname ($sname) for the $aname.\n\n";
 $mailerbody .= "the nomination has been reviewed, but unfortunately we must inform you that the award was denied\n\n";

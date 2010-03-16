@@ -1,4 +1,5 @@
 <?
+//Co receives this email when a student has dropped out of the academy
 $subject = $fleetname . " Academy Drop-out";
 $body = "Course: $coursename\n";
 $body .= "Character: $rank $charname\n";

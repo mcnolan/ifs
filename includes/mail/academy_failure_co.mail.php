@@ -1,4 +1,5 @@
 <?
+//Co receives this email when a student fails a course
 $subject = $fleetname . " Academy Failure";
 $body = "Course: $coursename\n";
 $body .= "Grade: " . $mark[$stuid] . "\n";

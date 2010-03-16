@@ -1,4 +1,5 @@
 <?
+//Player copy of site details when added through IFS (not an application)
 $recipient = "$name <$email>";
 $subject = $sitename . " New User Details";
 $message = "Hello $name,\n\n";

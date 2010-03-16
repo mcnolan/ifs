@@ -31,6 +31,9 @@ tf/co/academy.php
 tf/co/index.php
 - Fixed shipid passing error when logged as admin
 
+tf/co/view.php
+- Fixed hard coded rank pending value
+
 manual_install.php
 - Added menu entry for Reassigning students
 

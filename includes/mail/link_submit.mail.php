@@ -1,4 +1,5 @@
 <?
+//Notification there is a new submitted link that requires moderation
 $subject = "New User Submitted Weblink";
 $message .= "Hello Admin,\n\n";
 $message .= "A new web link '$linktitle' has been submitted by '$author' for the '$live_site' website.\n";

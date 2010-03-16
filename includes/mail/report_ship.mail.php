@@ -1,4 +1,5 @@
 <?
+//Monthly Co Report
 $mailersubject = "Monthly Report for the " . $sname;
 $mailerbody = "Ship Name: " . $sname . " ({$sid})\n";
 $mailerbody .= "Commanding Officer: " . $commoff . ".\n";

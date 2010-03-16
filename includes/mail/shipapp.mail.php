@@ -1,4 +1,5 @@
 <?
+//Existing ship application
 $to = webmasteremail . ", $Email";
 $subject = "Ship Application";
 $headers = "From: " . emailfrom . "\nX-Mailer:PHP\nip: $ip";

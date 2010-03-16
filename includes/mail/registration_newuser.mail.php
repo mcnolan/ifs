@@ -1,4 +1,5 @@
 <?
+//Registration email when applying through mambo
 $recipient = "$yourname <$email>";
 $subject = "New User Details";
 $message .= "Hello $yourname,\n\n";

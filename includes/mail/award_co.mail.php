@@ -1,4 +1,5 @@
 <?
+//Co receives this when the grant a low level award to a player
 $mailersubject = "One Of Your Crew Received An Award!";
 $mailerbody = "Hello,\n\n";
 $mailerbody .= "A member of your crew, $cname, has just been awarded the $fleetname $aname!\n";

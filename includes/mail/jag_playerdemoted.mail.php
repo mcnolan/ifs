@@ -1,4 +1,5 @@
 <?
+//JAG record for player demotion
 $mailersubject = "JAG - Player Demoted on " . $sname;
 $mailerbody = "Ship Name: " . $sname . "\n";
 $mailerbody .= "Crew: " . $cname . "\n";

@@ -7,12 +7,20 @@
   * Developer:	Frank Anon
   * 	    	fanon@obsidianfleet.net
   *
-  * Version:	1.11
+  * Updated By: Nolan
+  *		john.pbem@gmail.com
+  *
+  * Version:	1.14n (Nolan Ed.)
   * Release Date: June 3, 2004
+  * Patch 1.13n:  December 2009
+  * Patch 1.14n:  March 2010
   *
   * Copyright (C) 2003-2004 Frank Anon for Obsidian Fleet RPG
   * Distributed under the terms of the GNU General Public License
   * See doc/LICENSE for details
+  *
+  * This program contains code from Mambo Site Server 4.0.12
+  * Copyright (C) 2000 - 2002 Miro International Pty Ltd
   *
   * Date:	1/6/04
   * Comments: Main ship admin page for COs
@@ -33,7 +41,7 @@ else
 				<br /><br />
 
 	            <?php
-	            $qry = "SELECT name FROM {$spre}characters WHERE (pos='Pending' OR rank='234') AND ship='$sid'";
+	            $qry = "SELECT name FROM {$spre}characters WHERE (pos='Pending' OR rank='".PENDING_RANK."') AND ship='$sid'";
 				$result = $database->openConnectionWithReturn($qry);
 
 	            if ( mysql_num_rows($result) )
@@ -46,7 +54,7 @@ else
 	                while ( list ($cname) = mysql_fetch_array($result) )
 	                	echo $cname . "<br />\n";
 					?>
-		            </font><br />\n";
+		            </font><br />
 					</center></td></tr></table>
                     <?php
 	            }

@@ -1,5 +1,5 @@
 1.14
-- Track down the last of those problematic OF variables
-- Find the last few hard coded Ship IDs
+- Track down the last of those problematic OF variables /needle meet haystack
+- Find the last few hard coded Ship IDs /done
 - Move all mail content into text files (So people can actually edit them) /done
 - Potential Academy fixes /done

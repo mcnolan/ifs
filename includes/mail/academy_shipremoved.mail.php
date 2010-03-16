@@ -1,4 +1,5 @@
 <?
+//Academy instructor receives this when one of their students has been removed from their ship
 $subject = $fleetname . " Academy - Student Removal";
 $body = "A student in one of your classes has been removed from ";
 $body .= "his/her ship.\n\n";

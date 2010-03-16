@@ -1,4 +1,5 @@
 <?
+//JAG record for player removal
 $mailersubject = "JAG - Player Removed on " . $sname;
 $mailerbody = "Ship Name: " . $sname . "\n";
 $mailerbody .= "TF/TG: {$tfid} / {$tgid}\n";

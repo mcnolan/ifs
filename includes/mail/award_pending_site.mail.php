@@ -1,4 +1,5 @@
 <?
+//Webmaster notification that there is an award pending approval
 $mailersubject = "Pending Award";
 $mailerbody = "Award: $aname\n";
 $mailerbody .= "There is a new pending $fleetname Award submission waiting for your approval.\n";

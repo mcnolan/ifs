@@ -1,4 +1,5 @@
 <?
+//Award notification, winners copy.
 $mailersubject = "Congratulations - You've Received An Award!";
 $mailerbody = "Hello, $cname, and congratulations!\n\n";
 $mailerbody .= "You've just been awarded the $fleetname $aname.  Your Commanding Officer had this to say about you:\n";

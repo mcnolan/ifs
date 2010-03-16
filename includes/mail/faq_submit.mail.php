@@ -1,4 +1,5 @@
 <?
+//Notification of new FAQ requiring moderation
 $subject = "New User Submitted FAQ";
 $message .= "Hello Admin,\n\n";
 $message .= "A new FAQ '$faqtitle' has been submitted by '$author' for the '$live_site' website.\n";

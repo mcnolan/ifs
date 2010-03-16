@@ -1,4 +1,5 @@
 <?
+//Notification there is a new submitted news story for moderation
 $subject = "New User Submitted News Story";
 $message .= "Hello Admin Person,\n\n";
 $message .= "A new user news story '$newstitle' has been submitted by '$author' for the '$live_site' website.\n";
