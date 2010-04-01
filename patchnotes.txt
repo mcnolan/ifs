@@ -1,0 +1,7 @@
+Extract the archive, and copy the contents to your webserver in the same folders, overwriting if asked.
+If you wish to make use of the student transfer utility, run the included 'upgrade.php' script on your server. The link will appear at the bottom of your 'Academy' menu (if you have the required permissions)
+
+Details of changes are in the included CHANGELOG.
+
+Enjoy,
+Nolan
