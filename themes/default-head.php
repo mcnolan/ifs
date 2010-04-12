@@ -40,7 +40,7 @@ echo "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n";
   * Developer:	Frank Anon
   * 	    	fanon@obsidianfleet.net
   *
-  * Version:	1.11
+  * Version:	1.14n
   * Release Date: June 3, 2004
   *
   * Copyright (C) 2003-2004 Frank Anon for Obsidian Fleet RPG

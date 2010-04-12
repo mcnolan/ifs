@@ -10,9 +10,10 @@
   * Updated By: Nolan
   *		john.pbem@gmail.com
   *
-  * Version:	1.13n (Nolan Ed.)
+  * Version:	1.14n (Nolan Ed.)
   * Release Date: June 3, 2004
   * Patch 1.13n:  December 2009
+  * Patch 1.14n:  March 2010
   *
   * Copyright (C) 2003-2004 Frank Anon for Obsidian Fleet RPG
   * Distributed under the terms of the GNU General Public License
@@ -687,8 +688,8 @@ function ship_view_admin ($database, $mpre, $spre, $sdb, $sid, $uflag)
                     </td>
                 </tr>
                 <tr>
-	                <?php
-	                /*
+	                
+	                
                     <td width="150">Simm Type:</td>
                     <td width="490">
                         <select name="format">
@@ -702,14 +703,19 @@ function ship_view_admin ($database, $mpre, $spre, $sdb, $sid, $uflag)
                                 echo "<option value=\"Play by Bulletin Board\" selected=\"selected\">Play by Bulletin Board</option>\n";
                             else
                                 echo "<option value=\"Play by Bulletin Board\">Play by Bulletin Board</option>\n";
-							?>
+				if($format == "Play By Web") {
+					echo "<option value=\"Play by Web\" selected=\"selected\">Play by Web</option>\n";
+				} else {
+					echo "<option value=\"Play by Web\">Play by Web</option>\n";
+				}
+				?>
                         </select>
                     </td>
-	                */
-	                ?>
+	                
+	                
                     <td width="150">&nbsp;</td>
                     <td width="490">
-                    	<input type="hidden" name="format" value="Play by Email" />
+                    	<!--<input type="hidden" name="format" value="Play by Email" />-->
                     </td>
                 </tr>
                 <tr>
