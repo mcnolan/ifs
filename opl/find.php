@@ -7,8 +7,14 @@
   * Developer:	Frank Anon
   * 	    	fanon@obsidianfleet.net
   *
-  * Version:	1.11
+  * Updated By: Nolan
+  *		john.pbem@gmail.com
+  *
+  * Version:	1.15n (Nolan Ed.)
   * Release Date: June 3, 2004
+  * Patch 1.13n:  December 2009
+  * Patch 1.14n:  March 2010
+  * Patch 1.15n:  April 2010
   *
   * Copyright (C) 2003-2004 Frank Anon for Obsidian Fleet RPG
   * Distributed under the terms of the GNU General Public License
@@ -19,12 +25,15 @@
   *
   * Date:	4/13/04
   * Comments: Finds & displays stuff in the OPL
+  *
+  * See CHANGELOG for further details
  ***/
 
 // if we're searching by class:
-if ($srClass || $srName)
+//if ($srClass || $srName)
+if($class != "All" || $ship != "All")
 {
-	// find ships that match the info entered on form
+	/* find ships that match the info entered on form
 	if ($class == "All")
 		$qry = "SELECT * FROM {$spre}ships WHERE tf<>'99' ORDER BY name";
     elseif ($class)
@@ -33,6 +42,19 @@ if ($srClass || $srName)
 		$qry = "SELECT * FROM {$spre}ships WHERE tf<>'99' ORDER BY name";
 	else
 		$qry = "SELECT * FROM {$spre}ships WHERE name = '$ship' AND tf<>'99' ORDER BY name";
+	*/
+	$qry = "SELECT * FROM {$spre}ships WHERE tf <> '99'";
+	if($class != "All") {
+		$qry .= " AND class = '$class'";
+	}
+	if($ship != "All") {
+		$qry .= " AND name = '$ship'";
+	}
+	if(isset($_POST['format']) && sizeof($_POST['format']) > 0) {
+		$qry .= " AND Format in ('" . implode("','",$_POST['format'])."')";
+	}
+	$qry .= " ORDER BY name";
+	//echo $qry;	
 	$result = $database->openConnectionWithReturn($qry);
 
 	// For each ship, list info and available positions
@@ -45,7 +67,8 @@ if ($srClass || $srName)
 }
 
 // if we're going by position:
-elseif ($srPos)
+//elseif ($srPos)
+else
 {
 
 	if ($position == "-----Select Position----")
@@ -64,7 +87,11 @@ elseif ($srPos)
 		        $coname = "Open";
             }
             else
-		        $qry = "SELECT * FROM {$spre}ships WHERE tf<>'99' AND co <>'0' AND xo='0' ORDER BY name";
+		        $qry = "SELECT * FROM {$spre}ships WHERE tf<>'99' AND co <>'0' AND xo='0'";
+			if(isset($_POST['format']) && sizeof($_POST['format']) > 0) {
+				$qry .= " AND Format in ('" . implode("','",$_POST['format'])."')";
+			}
+			$qry .= " ORDER BY name";
 	        $result = $database->openConnectionWithReturn($qry);
 	        list($sid,$name,$reg,$class,$site,$co,$xo,$tf,$tg,$status,$image,,,$desc,$format)=mysql_fetch_array($result);
 
@@ -95,7 +122,12 @@ elseif ($srPos)
 	    }
         else
         {
-	        $qry = "SELECT * FROM {$spre}ships WHERE tf<>'99' AND co<>'0' ORDER BY name";
+	        $qry = "SELECT * FROM {$spre}ships WHERE tf<>'99' AND co<>'0'";
+		if(isset($_POST['format']) && sizeof($_POST['format']) > 0) {
+			$qry .= " AND Format in ('" . implode("','",$_POST['format'])."')";
+		}
+		$qry .= "ORDER BY name";
+
 	        $result = $database->openConnectionWithReturn($qry);
 
 	        echo "The following ships have the <FONT COLOR=\"green\">$pos</FONT> position open:<br /><br />";
@@ -180,7 +212,10 @@ function showpos ()
 
 				if (!mysql_num_rows($result3))
                 {
-					echo "<td><font color=\"orange\">{$contents[$counter]}</font></td>\n";
+					echo "<td><font color=\"";
+					if($contents[$counter] == $_POST['position']) { echo "green"; } else { echo "orange"; } 
+					echo "\">".$contents[$counter];
+					echo "</font></td>\n";
 					$count = $count + 1;
 				}
 			}
@@ -203,7 +238,10 @@ function showpos ()
 
             if (!mysql_num_rows($result3))
             {
-	            echo "<td><font color=\"orange\">{$pos}</font></td>\n";
+	            echo "<td><font color=\"orange\">";
+			if($_POST['position'] == $pos) { echo "<b>"; }
+			echo $pos;
+			echo "</font></td>\n";
 	            $count = $count + 1;
 
 	            if ($count == 3)

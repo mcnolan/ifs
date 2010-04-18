@@ -1,3 +1,20 @@
+1.15n PATCH - April 2010
+
+~Individual File Updates
+
+tf/lib-ship.php
+- Uncommented simm type selection box
+- Selection box will now read from the formats text file
+
+opl/find.php
+- Added simm type searching
+
+opl/index.php
+- Added simm type searching
+
+tf/formats.txt
+- Added list of default formats
+
 1.14n PATCH - March 2010
 
 Mail Reassignment

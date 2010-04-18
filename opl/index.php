@@ -7,8 +7,14 @@
   * Developer:	Frank Anon
   * 	    	fanon@obsidianfleet.net
   *
-  * Version:	1.11
+  * Updated By: Nolan
+  *		john.pbem@gmail.com
+  *
+  * Version:	1.15n (Nolan Ed.)
   * Release Date: June 3, 2004
+  * Patch 1.13n:  December 2009
+  * Patch 1.14n:  March 2010
+  * Patch 1.15n:  April 2010
   *
   * Copyright (C) 2003-2004 Frank Anon for Obsidian Fleet RPG
   * Distributed under the terms of the GNU General Public License
@@ -19,6 +25,8 @@
   *
   * Date:	12/12/03
   * Comments: Open Positions List main page
+  *
+  * See CHANGELOG for patch details
  ***/
 
 
@@ -26,7 +34,7 @@ if (!defined("IFS"))
 	redirect("index.php?option=opl");
 
 ?>
-<br /><center><h1>Open Positions List</h1></center><br />
+<br /><center><h1>Search Open Positions List</h1></center><br />
 <?
 
 switch ($task)
@@ -39,18 +47,12 @@ switch ($task)
 		break;
 	default:
 	    ?>
-
-	    <p>Search by:
-        <a href="#class">Class</a> |
-        <a href="#name">Name</a> |
-        <a href="#pos">Positions</a></p>
-
-	    <p><a name="class">
-	    <i><u>Search by class:</u></i><br />
 	    <form action="index.php?option=opl&task=find" method="post">
-
-	    <select name="class">
-	    <option selected="selected" value="All">All</option>
+	<table cellspacing="5">	    
+		<tr>
+	    	<td width="30%"><i><u>Ship Class:</u></i></td>
+		<td><select name="class">
+	    <option selected="selected" value="All">Any Class</option>
 	    <?php
         $qry = "SELECT c.name
 	            FROM {$sdb}classes c, {$sdb}types t, {$sdb}category d
@@ -60,41 +62,25 @@ switch ($task)
 	    while ( list ($sname) = mysql_fetch_array($result) )
             echo "<option value=\"{$sname}\">$sname</option>\n";
 	    ?>
-	    </select><br /><br />
+	    </select></td>
+		</tr>
+		<tr>
+		<td><u><i>Ship name:</i></u></td>
 
-	    <input type="hidden" name="srClass" value="yes" />
-	    <input type="submit" value="Search" />
-	    <input type="reset" value="Reset" />
-	    </form></a>
-
-        <br /><br />
-
-	    <a name="name">
-	    <u><i>Search by ship name:</i></u><br />
-	    <form action="index.php?option=opl&task=find" method="post">
-	    <select name="ship">
-
-	    <option value="All" selected="selected">All</option>
+		<td><select name="ship">
+	    <option value="All" selected="selected">Any Ship</option>
 	    <?php
         $qry = "SELECT name FROM {$spre}ships WHERE tf<>'99' ORDER BY name";
         $result = $database->openConnectionWithReturn($qry);
         while ( list ($sname) = mysql_fetch_array($result) )
             echo "<option value=\"{$sname}\">$sname</option>";
 	    ?>
-	    </select><br /><br />
-
-	    <input type="hidden" name="srName" value="yes" />
-	    <input type="submit" value="Search" />
-	    <input type="reset" value="Reset" />
-	    </form></a>
-
-	    <br /><br />
-
-	    <a name="pos">
-	    <u><i>Search by Position</i></u><br />
-	    <form action="index.php?option=opl&task=find" method="post">
-	    <select name="position">
-	    <option selected="selected" value="-----Select Position----">-----Select Position----</option>
+	    </select></td>
+		</tr>
+	 	<tr>
+	    	<td><u><i>Position</i></u></td>
+	    	<td><select name="position">
+	    <option selected="selected" value="All">-----Any Position----</option>
 	    <option value="Commanding Officer">Commanding Officer</option>
 	    <?php
         $filename = $relpath . "tf/positions.txt";
@@ -115,12 +101,30 @@ switch ($task)
             echo "<option value=\"$contents[$counter]\">$contents[$counter]</option>\n";
         } while ($counter < ($length - 1));
 	    ?>
-	    </select><br /><br />
+	    </select></td>
+		</tr>
+		
+		<tr>
+		<td>Simm Type</td>
+		<td>
+		<?
+		$formats = file($relpath . "tf/formats.txt");
+		foreach($formats as $format) {
+		?>
+		<input type="checkbox" name="format[]" value="<? echo $format; ?>"> <? echo $format; ?>
+		<?
+		}
+		?>
+		</td>
+		</tr>
 
-	    <input type="hidden" name="srPos" value="yes" />
-	    <input type="submit" value="Search" />
-	    <input type="reset" value="Reset" />
-	    </form></a>
+		<tr>
+		<td></td>
+		<td><input type="hidden" name="srClass" value="yes" /> <input type="submit" value="Search" /> <input type="reset" value="Reset" /></td>
+		</tr>
+	</table>
+
+	    </form>
 
 	    <br /></p>
 

@@ -10,10 +10,11 @@
   * Updated By: Nolan
   *		john.pbem@gmail.com
   *
-  * Version:	1.14n (Nolan Ed.)
+  * Version:	1.15n (Nolan Ed.)
   * Release Date: June 3, 2004
   * Patch 1.13n:  December 2009
   * Patch 1.14n:  March 2010
+  * Patch 1.15n:  April 2010
   *
   * Copyright (C) 2003-2004 Frank Anon for Obsidian Fleet RPG
   * Distributed under the terms of the GNU General Public License
@@ -693,7 +694,9 @@ function ship_view_admin ($database, $mpre, $spre, $sdb, $sid, $uflag)
                     <td width="150">Simm Type:</td>
                     <td width="490">
                         <select name="format">
+
                             <?php
+				/*
                             if ($format == "Play by Email")
                                 echo "<option value=\"Play by Email\" selected=\"selected\">Play by Email</option>\n";
                             else
@@ -708,7 +711,15 @@ function ship_view_admin ($database, $mpre, $spre, $sdb, $sid, $uflag)
 				} else {
 					echo "<option value=\"Play by Web\">Play by Web</option>\n";
 				}
+				*/
+				$formats = file($relpath . "tf/formats.txt");
+				foreach($formats as $type) {
+					echo "<option value=\"$type\"";
+					if(trim($type) == trim($format)) { echo "selected=\"selected\""; }
+					echo ">$type</option>";
+				}
 				?>
+
                         </select>
                     </td>
 	                
