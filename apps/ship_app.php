@@ -37,7 +37,7 @@ if (!defined("IFS"))
 <td>
 
 <h1 align="center">Ship Application Form</h1>
-<form action="index.php?option=app&task=ship" method="post">
+<form action="index.php?option=app&task=ship2" method="post">
 
 <center>
 
