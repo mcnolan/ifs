@@ -121,8 +121,9 @@ else
 		echo "\">Details</a>";
             echo "</td>\n";
             echo "</tr>\n";
-		echo "</table\n";
+		
         }
+	echo "</table\n";
     }
 
     // Submitting a player
