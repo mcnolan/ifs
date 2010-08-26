@@ -82,7 +82,7 @@ else
         {
         	if ($pos == "Commanding Officer")
             {
-		        $qry = "SELECT * FROM {$spre}ships WHERE tf<>'99' AND co='0' ORDER BY name";
+		        $qry = "SELECT * FROM {$spre}ships WHERE tf<>'99' AND co='0'";
 		        $rank = "";
 		        $coname = "Open";
             }
