@@ -32,17 +32,17 @@
 
 if (!get_magic_quotes_gpc())
 {
-	add_magic_quotes('HTTP_GET_VARS');
-	add_magic_quotes('HTTP_POST_VARS');
-	add_magic_quotes('HTTP_COOKIE_VARS');
-	add_magic_quotes('HTTP_SESSION_VARS');
+	add_magic_quotes('_GET');
+	add_magic_quotes('_POST');
+	add_magic_quotes('_COOKIE');
+	add_magic_quotes('_SESSION');
 }
 else if ( ini_get('register_globals') == "")
 {
-	force_reg_globals('HTTP_GET_VARS');
-	force_reg_globals('HTTP_POST_VARS');
-	force_reg_globals('HTTP_COOKIE_VARS');
-	force_reg_globals('HTTP_SESSION_VARS');
+	force_reg_globals('_GET');
+	force_reg_globals('_POST');
+	force_reg_globals('_COOKIE');
+	force_reg_globals('_SESSION');
 }
 
 function add_magic_quotes($vars,$suffix = '')

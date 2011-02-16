@@ -39,7 +39,7 @@ if ($database=="")
 }
 
 
-if ($HTTP_COOKIE_VARS["session"]!="")
+if ($_COOKIE["session"]!="")
 {
 	$cryptSessionID=md5($session);
 	$qry="SELECT userid FROM {$mpre}session WHERE session_ID='$cryptSessionID'";

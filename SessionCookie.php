@@ -39,7 +39,7 @@ $database->openConnectionNoReturn($qry);
 $current_time = time();
 $userip = getenv("REMOTE_ADDR");
 
-if ($HTTP_COOKIE_VARS["session"]=="")              // we need to set a cookie?
+if ($_COOKIE["session"]=="")              // we need to set a cookie?
 {
     $existSessionID=0;
     while ($existSessionID==0)
@@ -68,11 +68,11 @@ if ($HTTP_COOKIE_VARS["session"]=="")              // we need to set a cookie?
     }
 }
 
-if ($HTTP_COOKIE_VARS["session"]!="")             // make sure we have a cookie
+if ($_COOKIE["session"]!="")             // make sure we have a cookie
 {
-    $cvar = $HTTP_COOKIE_VARS["session"];
-    $sessionCookie=$HTTP_COOKIE_VARS["session"];
-    $cryptSessionCookie=md5($HTTP_COOKIE_VARS["session"]);
+    $cvar = $_COOKIE["session"];
+    $sessionCookie=$_COOKIE["session"];
+    $cryptSessionCookie=md5($_COOKIE["session"]);
 
     $qry = "DELETE FROM {$mpre}session WHERE ip='$userip' AND session_id<>'$cryptSessionCookie'";
     $result = $database->openConnectionWithReturn($qry);

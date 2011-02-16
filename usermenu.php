@@ -38,7 +38,7 @@ if ($database=="")
 switch($op2)
 {
     case "login":
-        checkLogin($op2, $username, $passwd, $database, $usermenuhtml, $option, $HTTP_COOKIE_VARS, $mpre, $spre, $remember);
+        checkLogin($op2, $username, $passwd, $database, $usermenuhtml, $option, $_COOKIE, $mpre, $spre, $remember);
         break;
     case "CorrectLogin":
         showMenu($usermenuhtml, $database, $uid, $option, $mpre);
@@ -48,7 +48,7 @@ switch($op2)
         break;
 }
 
-function checkLogin($op2, $username, $passwd, $database, $usermenuhtml, $option, $HTTP_COOKIE_VARS, $mpre, $spre, $remember)
+function checkLogin($op2, $username, $passwd, $database, $usermenuhtml, $option, $_COOKIE, $mpre, $spre, $remember)
 {
     if ((trim($username)=="") || (trim($passwd)==""))
         echo "<SCRIPT> alert('Please complete the username and password fields.'); window.history.go(-1); </SCRIPT>\n";
@@ -65,9 +65,9 @@ function checkLogin($op2, $username, $passwd, $database, $usermenuhtml, $option,
                 echo "<SCRIPT>alert('Your login has been blocked. Please contact the administrator.'); window.history.go(-1); </SCRIPT>\n";
             else
             {
-                if ($HTTP_COOKIE_VARS["session"]!="")
+                if ($_COOKIE["session"]!="")
                 {
-                    $sessionID=$HTTP_COOKIE_VARS["session"];
+                    $sessionID=$_COOKIE["session"];
                     $cryptSessionID=md5($sessionID);
                     if ($remember == "on")
                         $qry="UPDATE {$mpre}session
