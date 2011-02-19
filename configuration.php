@@ -62,24 +62,24 @@ $fleetbanner = 'images/example-banner.jpg';	//
 
 // Legacy settings from the Mambo config file.  Dunno how important they are
 // Path settings
-$base_path = '/path/to/ifs';
+$base_path = '/path/to/ifs/';
 //Shouldn't have to adjust below
-$pdf_path = $base_path + 'pdf/';
-$image_path = $base_path + 'images/stories';
+$pdf_path = $base_path . 'pdf/';
+$image_path = $base_path . 'images/stories';
 $sitename = $fleetname;
 $col = 3;
 $row = 3;
 
 if ($directory !='uploadfiles'){
 	$title[0] = 'Story Images';
-	$dir[0]=$base_path + 'images/stories'; 
-	$picurl[0]=$live_site + '/images/stories/';
-	$tndir[0]=$live_site + '/images/stories/';
+	$dir[0]=$base_path . 'images/stories'; 
+	$picurl[0]=$live_site . '/images/stories/';
+	$tndir[0]=$live_site . '/images/stories/';
 } else {
 	$title[0]='Uploaded File Images';
-	$dir[0]=$base_path + 'uploadfiles/$Itemid';
-	$picurl[0]=$live_site + '/uploadfiles/$Itemid';
-	$tndir[0]=$live_site + '/uploadfiles/$Itemid';
+	$dir[0]=$base_path . 'uploadfiles/$Itemid';
+	$picurl[0]=$live_site . '/uploadfiles/$Itemid';
+	$tndir[0]=$live_site . '/uploadfiles/$Itemid';
 }
 
 /********************

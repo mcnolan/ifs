@@ -337,7 +337,7 @@ function ship_list ($database, $mpre, $spre, $sdb, $uflag, $textonly, $relpath, 
             {
 	 			if ($site != 'none')
 	  				echo "<a href=\"{$site}\" target=\"_blank\">";
-   				echo "<img src=\"{$relpath}images/ships/{$image}\"  alt=\"$sname banner\" border=\"0\" height=\"100\" width=\"389\">\n";
+   				echo "<img src=\"{$relpath}images/ships/{$image}\"  alt=\"$sname banner\" border=\"0\">\n";
                 if ($site != "none")
                 	echo "</a>\n";
    			}
