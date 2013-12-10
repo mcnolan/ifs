@@ -76,5 +76,4 @@ function force_reg_globals ($vars, $suffix = '')
 		eval("\$GLOBALS$suffix = \$vars_val;");
 
 }
-
 ?>
