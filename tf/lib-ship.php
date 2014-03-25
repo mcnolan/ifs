@@ -10,11 +10,12 @@
   * Updated By: Nolan
   *		john.pbem@gmail.com
   *
-  * Version:	1.15n (Nolan Ed.)
+  * Version:	1.16n (Nolan Ed.)
   * Release Date: June 3, 2004
   * Patch 1.13n:  December 2009
   * Patch 1.14n:  March 2010
   * Patch 1.15n:  April 2010
+  * Patch 1.16n:  March 2014
   *
   * Copyright (C) 2003-2004 Frank Anon for Obsidian Fleet RPG
   * Distributed under the terms of the GNU General Public License
@@ -1012,7 +1013,7 @@ function ship_view_info ($database, $mpre, $spre, $sid, $uflag)
 	                            <a href="index.php?option=<?php echo option ?>&amp;task=<?php echo task ?>&amp;action=common&amp;lib=rview&amp;cid=<?php echo $cid ?>&amp;sid=<?php echo $sid ?>">
 	                                Service Record</a>
 	                        </td>
-	                        <?
+	                        <?php
 	                    }
                         else
 	                        echo "<td>&nbsp;</td>\n";

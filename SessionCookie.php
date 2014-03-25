@@ -10,10 +10,11 @@
   * Updated By: Nolan
   *		john.pbem@gmail.com
   *
-  * Version:	1.14n (Nolan Ed.)
+  * Version:	1.16n (Nolan Ed.)
   * Release Date: June 3, 2004
   * Patch 1.13n:  December 2009
   * Patch 1.14n:  March 2010
+  * Patch 1.16n:  March 2014
   *
   * Copyright (C) 2003-2004 Frank Anon for Obsidian Fleet RPG
   * Distributed under the terms of the GNU General Public License
@@ -77,7 +78,7 @@ if ($_COOKIE["session"]!="")             // make sure we have a cookie
     $qry = "DELETE FROM {$mpre}session WHERE ip='$userip' AND session_id<>'$cryptSessionCookie'";
     $result = $database->openConnectionWithReturn($qry);
 
-    if ($option=="logout")
+    if (isset($option) && $option=="logout")
     {
         $qry="UPDATE {$mpre}session
         	  SET guest=1, username='', userid=null, remember='0'

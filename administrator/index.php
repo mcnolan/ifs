@@ -1,4 +1,4 @@
-<?
+<?php
  /**
    *  Mambo Site Server Open Source Project Version 4.0
    *  Dynamic portal server and Content managment engine
@@ -19,6 +19,7 @@
    *  Comments:
    *
    * Modified December 2009 by Nolan (john.pbem@gmail.com) to work with register_globals off
+   * Modified March 2014 - Modern PHP5 fixes
   **/
 
 	$relpath = "../";
@@ -41,7 +42,7 @@
 				//if the cookie has not been set then crypt the password entered
 				if (trim($pass)!=""){
 					$pass = md5($pass);
-					if ($remember=="on"){
+					if ($remember=="on"){ogin=true
 						//if the user wants the password remembered then set the cookie
 						$lifetime= (time() + 1036800000);
 				    	setcookie("passwordcookie", "$pass", $lifetime);
@@ -75,13 +76,13 @@
 					}
 				//set up the admin session then take the user into the admin section of the site
 					session_start();
-					session_register("myname");
+					//session_register("myname");
 					$_SESSION['myname'] = $fullname;
-					session_register("userid");
+					//session_register("userid");
 					$_SESSION['userid'] = $user_id;
-					session_register("session_id");
+					//session_register("session_id");
 					$_SESSION['session_id'] = $random_string;
-					session_write_close();
+					//session_write_close();
 					print "<SCRIPT>document.location.href='index2.php'</SCRIPT>\n";
 					}
 				}

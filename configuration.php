@@ -10,9 +10,10 @@
   * Updated By: Nolan
   *		john.pbem@gmail.com
   *
-  * Version:	1.13n (Nolan Ed.)
+  * Version:	1.16n (Nolan Ed.)
   * Release Date: June 3, 2004
   * Patch 1.13n:  December 2009
+  * Patch 1.16n:  March 2014
   *
   * Copyright (C) 2003-2004 Frank Anon for Obsidian Fleet RPG
   * Distributed under the terms of the GNU General Public License
@@ -23,6 +24,8 @@
   *
   * Date:	6/03/04
   * Comments: Configuration variables
+  *
+  * 25/03/2014 Added variable checks to remove some basic warnings
   *
   * See CHANGELOG for patch details
   *
@@ -70,7 +73,7 @@ $sitename = $fleetname;
 $col = 3;
 $row = 3;
 
-if ($directory !='uploadfiles'){
+if (isset($directory) && $directory !='uploadfiles'){
 	$title[0] = 'Story Images';
 	$dir[0]=$base_path . 'images/stories'; 
 	$picurl[0]=$live_site . '/images/stories/';

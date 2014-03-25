@@ -14,6 +14,7 @@
   * Release Date: June 3, 2004
   * Patch 1.13n:  December 2009
   * Patch 1.14n:  March 2010
+  * Patch 1.16n:  March 2014
   *
   * Copyright (C) 2003-2004 Frank Anon for Obsidian Fleet RPG
   * Distributed under the terms of the GNU General Public License
@@ -25,13 +26,16 @@
   * Date:	6/03/04
   * Comments: Install file
   *
+  * 25/03/2014 - Updated variable checking in line with more modern standards
+  *				Fixed some old mySQL statements. Removed myISAM declarations.
+  *
   * See CHANGELOG for patch details
   *
  ***/
 
 if(isset($output)) { $_POST['doinstall'] = 'go'; }
 
-if ( !$_POST['doinstall'] )
+if ( !isset($_POST['doinstall']) )
 {
 	echo "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>";
 	?>
@@ -77,7 +81,7 @@ else
       `pass` tinyint(4) NOT NULL default '0',
       `coord` tinytext NOT NULL,
       `active` char(1) NOT NULL default ''
-    ) TYPE=MyISAM PACK_KEYS=0;
+    );
 
     CREATE TABLE `{$spre}acad_instructors` (
       `id` int(11) NOT NULL auto_increment,
@@ -86,7 +90,7 @@ else
       `course` tinyint(4) NOT NULL default '0',
       `active` char(1) NOT NULL default '',
       PRIMARY KEY  (`id`)
-    ) TYPE=MyISAM;
+    );
 
     CREATE TABLE `{$spre}acad_marks` (
       `id` int(11) NOT NULL auto_increment,
@@ -98,7 +102,7 @@ else
       `comments` text NOT NULL,
       `name` tinytext NOT NULL,
       KEY `id` (`id`)
-    ) TYPE=MyISAM;
+    );
 
     CREATE TABLE `{$spre}acad_students` (
       `id` int(11) NOT NULL auto_increment,
@@ -110,7 +114,7 @@ else
       `sdate` tinytext NOT NULL,
       `edate` tinytext NOT NULL,
       KEY `id` (`id`)
-    ) TYPE=MyISAM;
+    );
 
 	CREATE TABLE `{$spre}apps` (
 	  `id` int(11) NOT NULL auto_increment,
@@ -120,7 +124,7 @@ else
 	  `forward` text NOT NULL,
 	  `ip` varchar(15) NOT NULL default '',
 	  KEY `id` (`id`)
-	) TYPE=MyISAM;
+	);
 
     CREATE TABLE `{$spre}awardees` (
       `id` int(11) NOT NULL auto_increment,
@@ -135,7 +139,7 @@ else
       `nemail` tinytext NOT NULL,
       `approved` char(1) NOT NULL default '',
       KEY `id` (`id`)
-    ) TYPE=MyISAM;
+    );
 
     CREATE TABLE `{$spre}awards` (
       `id` int(11) NOT NULL auto_increment,
@@ -147,7 +151,7 @@ else
       `intro` tinytext NOT NULL,
       `descrip` text NOT NULL,
       KEY `id` (`id`)
-    ) TYPE=MyISAM;
+    );
 
 	CREATE TABLE `{$spre}banex` (
 	  `id` int(11) NOT NULL auto_increment,
@@ -155,7 +159,7 @@ else
 	  `code` text NOT NULL,
 	  `published` char(1) NOT NULL default '',
 	  KEY `id` (`id`)
-	) TYPE=MyISAM;
+	);
 
 	CREATE TABLE `{$spre}banlist` (
 	  `id` int(11) NOT NULL auto_increment,
@@ -169,7 +173,7 @@ else
 	  `expire` tinytext NOT NULL,
 	  `level` varchar(7) NOT NULL default '',
 	  KEY `id` (`id`)
-	) TYPE=MyISAM;
+	);
 
 	CREATE TABLE `{$spre}characters` (
 	  `id` int(11) NOT NULL auto_increment,
@@ -186,14 +190,14 @@ else
 	  `pending` char(1) NOT NULL default '0',
 	  `ptime` tinytext NOT NULL,
 	  PRIMARY KEY  (`id`)
-	) TYPE=MyISAM;
+	);
 
 	CREATE TABLE `{$spre}flags` (
 	  `flag` char(1) NOT NULL default '',
 	  `name` tinytext NOT NULL,
 	  `admin` int(1) NOT NULL default '0',
 	  `ordering` tinyint(4) NOT NULL default '0'
-	) TYPE=MyISAM;
+	);
 
     INSERT INTO `{$spre}flags` VALUES ('a', 'Triad', 1, 9);
     INSERT INTO `{$spre}flags` VALUES ('c', 'Commanding Officer', 0, 1);
@@ -211,13 +215,13 @@ else
 	  `user` tinytext NOT NULL,
 	  `action` text NOT NULL,
 	  `comments` text NOT NULL
-	) TYPE=MyISAM;
+	);
 
 	CREATE TABLE `{$spre}positions` (
 	  `ship` tinyint(4) NOT NULL default '0',
 	  `action` char(3) NOT NULL default '',
 	  `pos` tinytext NOT NULL
-	) TYPE=MyISAM;
+	);
 
 	CREATE TABLE `{$spre}rank` (
 	  `rankid` int(11) NOT NULL auto_increment,
@@ -226,7 +230,7 @@ else
 	  `color` text NOT NULL,
 	  `level` int(2) NOT NULL default '0',
 	  PRIMARY KEY  (`rankid`)
-	) TYPE=MyISAM;
+	);
 
 	CREATE TABLE `{$spre}record` (
 	  `id` int(11) NOT NULL auto_increment,
@@ -239,7 +243,7 @@ else
 	  `name` tinytext NOT NULL,
 	  `admin` char(1) NOT NULL default '',
 	  KEY `id` (`id`)
-	) TYPE=MyISAM;
+	);
 
 	CREATE TABLE `{$spre}reports` (
 	  `id` int(11) NOT NULL auto_increment,
@@ -255,7 +259,7 @@ else
 	  `improvement` tinytext NOT NULL,
 	  `comments` tinytext NOT NULL,
 	  PRIMARY KEY  (`id`)
-	) TYPE=MyISAM;
+	);
 
 	CREATE TABLE `{$spre}ships` (
 	  `id` int(11) NOT NULL auto_increment,
@@ -274,7 +278,7 @@ else
 	  `description` varchar(250) NOT NULL default '',
 	  `format` tinytext NOT NULL,
 	  PRIMARY KEY  (`id`)
-	) TYPE=MyISAM AUTO_INCREMENT=5;
+	) AUTO_INCREMENT=5;
 
     INSERT INTO `{$spre}ships` VALUES (1, 'Unassigned Characters', '', '', '', 0, 0, 99, 3, '', '', 1, '', '', '');
 	INSERT INTO `{$spre}ships` VALUES (2, 'Transferred Characters', '', '', '', 0, 0, 99, 3, '', '', 0, '', '', '');
@@ -287,7 +291,7 @@ else
 	  `name` varchar(30) NOT NULL default '',
 	  `co` int(11) NOT NULL default '0',
 	  `jag` tinytext NOT NULL
-	) TYPE=MyISAM;
+	);
 
     INSERT INTO `{$spre}taskforces` VALUES (99, 0, 'Admin', 0, '');
     INSERT INTO `{$spre}taskforces` VALUES (99, 1, 'Queue', 0, '');
@@ -312,7 +316,7 @@ else
 	  `webupdates` text NOT NULL,
 	  `notes` text NOT NULL,
 	  KEY `id` (`id`)
-	) TYPE=MyISAM;
+	);
 
 	CREATE TABLE `{$mpre}articles` (
 	  `artid` int(11) NOT NULL auto_increment,
@@ -332,7 +336,7 @@ else
 	  `published` int(11) NOT NULL default '0',
 	  `indent` tinyint(4) NOT NULL default '0',
 	  PRIMARY KEY  (`artid`)
-	) TYPE=MyISAM;
+	);
 
 	CREATE TABLE `{$mpre}banner` (
 	  `bid` int(11) NOT NULL auto_increment,
@@ -349,7 +353,7 @@ else
 	  `checked_out_time` time default NULL,
 	  `editor` varchar(50) default NULL,
 	  PRIMARY KEY  (`bid`)
-	) TYPE=MyISAM;
+	);
 
 	CREATE TABLE `{$mpre}bannerclient` (
 	  `cid` int(11) NOT NULL auto_increment,
@@ -361,7 +365,7 @@ else
 	  `checked_out_time` time default NULL,
 	  `editor` varchar(50) default NULL,
 	  PRIMARY KEY  (`cid`)
-	) TYPE=MyISAM;
+	);
 
 	CREATE TABLE `{$mpre}bannerfinish` (
 	  `bid` int(11) NOT NULL auto_increment,
@@ -373,7 +377,7 @@ else
 	  `datestart` datetime default NULL,
 	  `dateend` datetime default NULL,
 	  PRIMARY KEY  (`bid`)
-	) TYPE=MyISAM;
+	);
 
 	CREATE TABLE `{$mpre}categories` (
 	  `categoryid` int(11) NOT NULL auto_increment,
@@ -389,7 +393,7 @@ else
 	  PRIMARY KEY  (`categoryid`),
 	  UNIQUE KEY `categoryid` (`categoryid`),
 	  KEY `categoryid_2` (`categoryid`)
-	) TYPE=MyISAM AUTO_INCREMENT=2;
+	) AUTO_INCREMENT=2;
 
     INSERT INTO `{$mpre}categories` VALUES (1, 'Fleet News', NULL, 'News', NULL, 1, 0, '00:00:00', NULL, 0);
 
@@ -398,7 +402,7 @@ else
 	  `content` text NOT NULL,
 	  `componentid` int(4) NOT NULL default '0',
 	  PRIMARY KEY  (`id`)
-	) TYPE=MyISAM;
+	);
 
 	CREATE TABLE `{$mpre}components` (
 	  `id` int(11) NOT NULL auto_increment,
@@ -412,7 +416,7 @@ else
 	  `module` varchar(50) default NULL,
 	  `numnews` int(11) NOT NULL default '0',
 	  PRIMARY KEY  (`id`)
-	) TYPE=MyISAM AUTO_INCREMENT=12;
+	) AUTO_INCREMENT=12;
 
     INSERT INTO `{$mpre}components` VALUES (1, 'Login', 2, 'right', 0, '00:00:00', 1, NULL, 'login', 0);
 	INSERT INTO `{$mpre}components` VALUES (2, 'Surveys/Polls', 4, 'right', 0, '00:00:00', 1, NULL, 'survey', 0);
@@ -430,7 +434,7 @@ else
 	  `name` varchar(50) NOT NULL default '',
 	  `count` bigint(20) NOT NULL default '0',
 	  PRIMARY KEY  (`id`)
-	) TYPE=MyISAM AUTO_INCREMENT=10;
+	) AUTO_INCREMENT=10;
 
     INSERT INTO `{$mpre}counter` VALUES (1, 'browser', 'Netscape', 0);
 	INSERT INTO `{$mpre}counter` VALUES (3, 'browser', 'Unknown', 0);
@@ -456,7 +460,7 @@ else
 	  `ordering` int(11) default NULL,
 	  `approved` tinyint(4) default '1',
 	  PRIMARY KEY  (`artid`)
-	) TYPE=MyISAM;
+	);
 
 	CREATE TABLE `{$mpre}links` (
 	  `lid` int(11) NOT NULL auto_increment,
@@ -475,7 +479,7 @@ else
 	  `approved` tinyint(4) default '1',
 	  `ip` tinytext NOT NULL,
 	  PRIMARY KEY  (`lid`)
-	) TYPE=MyISAM;
+	);
 
 	CREATE TABLE `{$mpre}mambo_modules` (
 	  `moduleid` int(11) NOT NULL auto_increment,
@@ -483,7 +487,7 @@ else
 	  `modulelink` varchar(50) default NULL,
 	  `menuid` int(4) default NULL,
 	  PRIMARY KEY  (`moduleid`)
-	) TYPE=MyISAM AUTO_INCREMENT=7;
+	) AUTO_INCREMENT=7;
 
     INSERT INTO `{$mpre}mambo_modules` VALUES (1, 'Story', 'index.php', 1);
 	INSERT INTO `{$mpre}mambo_modules` VALUES (2, 'Stories List', 'index.php?option=news', 2);
@@ -509,7 +513,7 @@ else
 	  PRIMARY KEY  (`id`),
 	  UNIQUE KEY `id_2` (`id`),
 	  KEY `id` (`id`)
-	) TYPE=MyISAM AUTO_INCREMENT=1;
+	) AUTO_INCREMENT=1;
 
 	INSERT INTO `{$mpre}menu` VALUES (NULL, 'mainmenu', 'News', 'index.php?option=news', 'mambo', 1, 0, 0, 7, 0, '00:00:00', NULL, 2, 0);
 	INSERT INTO `{$mpre}menu` VALUES (NULL, 'mainmenu', 'Articles', 'index.php?option=articles', 'mambo', 1, 0, 0, 5, 0, '00:00:00', NULL, 0, 0);
@@ -568,7 +572,7 @@ else
 	  `content` text NOT NULL,
 	  `heading` varchar(100) default NULL,
 	  PRIMARY KEY  (`mcid`)
-	) TYPE=MyISAM;
+	);
 
     INSERT INTO `{$mpre}menucontent` VALUES (1, 30, 'This is a menu sub-item.', 'Menu Item');
 
@@ -581,7 +585,7 @@ else
 	  `checked_out_time` time default NULL,
 	  `editor` varchar(50) default NULL,
 	  PRIMARY KEY  (`newsflashID`)
-	) TYPE=MyISAM AUTO_INCREMENT=2;
+	) AUTO_INCREMENT=2;
 
     INSERT INTO `{$mpre}newsflash` VALUES (1, 'Newflash', 'This is a newflash.', 1, NULL, NULL, NULL);
 
@@ -590,7 +594,7 @@ else
 	  `optionText` text NOT NULL,
 	  `optionCount` int(11) NOT NULL default '0',
 	  `voteid` int(11) NOT NULL default '0'
-	) TYPE=MyISAM;
+	);
 
 	CREATE TABLE `{$mpre}poll_date` (
 	  `id` bigint(20) NOT NULL auto_increment,
@@ -601,7 +605,7 @@ else
 	  PRIMARY KEY  (`id`),
 	  UNIQUE KEY `id` (`id`),
 	  KEY `ip` (`ip`)
-	) TYPE=MyISAM;
+	);
 
 	CREATE TABLE `{$mpre}poll_desc` (
 	  `pollID` int(11) NOT NULL auto_increment,
@@ -612,13 +616,13 @@ else
 	  `editor` varchar(50) default NULL,
 	  `published` int(11) NOT NULL default '0',
 	  PRIMARY KEY  (`pollID`)
-	) TYPE=MyISAM;
+	);
 
 	CREATE TABLE `{$mpre}poll_menu` (
 	  `pollid` int(11) NOT NULL default '0',
 	  `menuid` int(11) NOT NULL default '0',
 	  PRIMARY KEY  (`pollid`,`menuid`)
-	) TYPE=MyISAM;
+	);
 
 	CREATE TABLE `{$mpre}queue` (
 	  `qid` smallint(5) unsigned NOT NULL auto_increment,
@@ -629,7 +633,7 @@ else
 	  `timestamp` datetime NOT NULL default '0000-00-00 00:00:00',
 	  `topic` varchar(20) NOT NULL default '',
 	  PRIMARY KEY  (`qid`)
-	) TYPE=MyISAM;
+	);
 
 	CREATE TABLE `{$mpre}session` (
 	  `username` varchar(50) default NULL,
@@ -643,7 +647,7 @@ else
 	  `active` char(1) NOT NULL default '1',
 	  `js` char(1) NOT NULL default '1',
 	  PRIMARY KEY  (`session_id`)
-	) TYPE=MyISAM;
+	);
 
 	CREATE TABLE `{$mpre}stories` (
 	  `sid` int(11) NOT NULL auto_increment,
@@ -666,7 +670,7 @@ else
 	  `approved` tinyint(4) default '1',
 	  `ip` tinytext NOT NULL,
 	  PRIMARY KEY  (`sid`)
-	) TYPE=MyISAM AUTO_INCREMENT=2;
+	) AUTO_INCREMENT=2;
 
 INSERT INTO `{$mpre}stories` ( `sid` , `title` , `time` , `introtext` , `fultext` , `counter` , `topic` , `hits` , `archived` , `newsimage` , `published` , `checked_out` , `checked_out_time` , `editor` , `image_position` , `ordering` , `frontpage` , `approved` , `ip` )
 VALUES (
@@ -678,7 +682,7 @@ VALUES (
 	  `cur_theme` varchar(50) NOT NULL default '',
 	  `col_main` char(1) NOT NULL default '1',
 	  PRIMARY KEY  (`id`)
-	) TYPE=MyISAM;
+	);
 
     INSERT INTO `{$mpre}system` VALUES (0, 'Default', 'default', '1');
 
@@ -697,7 +701,7 @@ VALUES (
 	  `bday` varchar(4) NOT NULL default '',
 	  `regdate` int(11) NOT NULL default '0',
 	  PRIMARY KEY  (`id`)
-	) TYPE=MyISAM PACK_KEYS=0 AUTO_INCREMENT=2;
+	) PACK_KEYS=0 AUTO_INCREMENT=2;
 
     INSERT INTO `{$mpre}users` VALUES (1, 'Admin', 'admin', 'admin@domain.com', '21232f297a57a5a743894a0e4a801fc3', 'superadministrator', 'ACJOPRTW', 0, 0, 1, '', '', 0);
 
@@ -707,7 +711,7 @@ VALUES (
 	  `type` int(11) NOT NULL default '0',
 	  `description` text NOT NULL,
 	  KEY `id` (`id`)
-	) TYPE=MyISAM;
+	);
 
 	CREATE TABLE `{$sdb}classes` (
 	  `id` int(11) NOT NULL auto_increment,
@@ -735,7 +739,7 @@ VALUES (
 	  `image` tinytext NOT NULL,
 	  `active` char(1) NOT NULL default '1',
 	  KEY `id` (`id`)
-	) TYPE=MyISAM;
+	);
 
 	CREATE TABLE `{$sdb}equip` (
 	  `id` int(11) NOT NULL auto_increment,
@@ -745,14 +749,14 @@ VALUES (
 	  `number` smallint(6) NOT NULL default '0',
 	  `sort` int(11) NOT NULL default '0',
 	  KEY `id` (`id`)
-	) TYPE=MyISAM;
+	);
 
 	CREATE TABLE `{$sdb}types` (
 	  `id` int(11) NOT NULL auto_increment,
 	  `type` tinytext NOT NULL,
 	  `support` char(1) NOT NULL default '',
 	  KEY `id` (`id`)
-	) TYPE=MyISAM;
+	);
 
 	CREATE TABLE `{$sdb}weapons` (
 	  `id` int(11) NOT NULL auto_increment,
@@ -762,14 +766,14 @@ VALUES (
 	  `description` text NOT NULL,
 	  `image` tinytext NOT NULL,
 	  KEY `id` (`id`)
-	) TYPE=MyISAM;
+	);
 
     CREATE TABLE `{$sdb}decks` (
       `ship` int(11) NOT NULL default '0',
       `deck` int(4) NOT NULL default '0',
       `descrip` text NOT NULL,
       KEY `ship_id_deckl` (`ship`)
-    ) TYPE=MyISAM;
+    );
 
 INSERT INTO {$sdb}types (id, type, support) VALUES (1, 'Starship', 'n');
 INSERT INTO {$sdb}types (id, type, support) VALUES (2, 'Starbase', 'n');
@@ -797,7 +801,7 @@ INSERT INTO `{$spre}rank` VALUES (NULL, 'Rank Pending', 'ranks/w-blank1.png', ''
         	$pos = strlen($qry);
     	$query = substr($qry, 0, $pos);
         $query = str_replace("~", "&amp;", $query);
-        mysql_query($query);
+        mysql_query($query) or die(mysql_error());
         if ($pos != strlen($qry))
 	        $qry = substr($qry, $pos+1);
     } while ($qry);

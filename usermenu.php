@@ -7,15 +7,21 @@
   * Developer:	Frank Anon
   * 	    	fanon@obsidianfleet.net
   *
-  * Version:	1.11
+  * Updated By: Nolan
+  *		john.pbem@gmail.com
+  *
+  * Version:	1.16n (Nolan Ed.)
   * Release Date: June 3, 2004
+  * Patch 1.16n: March 2014
   *
   * Copyright (C) 2003-2004 Frank Anon for Obsidian Fleet RPG
   * Distributed under the terms of the GNU General Public License
   * See doc/LICENSE for details
   *
-  * This file based on code from Mambo Site Server 4.0.12
+  * This file contains code from Mambo Site Server 4.0.12
   * Copyright (C) 2000 - 2002 Miro International Pty Ltd
+  *
+  * See CHANGELOG for patch details
   *
   * Date:	1/11/03
   * Comments: Display usermenu once logged in
@@ -38,7 +44,7 @@ if ($database=="")
 switch($op2)
 {
     case "login":
-        checkLogin($op2, $username, $passwd, $database, $usermenuhtml, $option, $_COOKIE, $mpre, $spre, $remember);
+        checkLogin($op2, $username, $passwd, $database, $usermenuhtml, $option, $mpre, $spre, $remember);
         break;
     case "CorrectLogin":
         showMenu($usermenuhtml, $database, $uid, $option, $mpre);
@@ -48,7 +54,7 @@ switch($op2)
         break;
 }
 
-function checkLogin($op2, $username, $passwd, $database, $usermenuhtml, $option, $_COOKIE, $mpre, $spre, $remember)
+function checkLogin($op2, $username, $passwd, $database, $usermenuhtml, $option, $mpre, $spre, $remember)
 {
     if ((trim($username)=="") || (trim($passwd)==""))
         echo "<SCRIPT> alert('Please complete the username and password fields.'); window.history.go(-1); </SCRIPT>\n";

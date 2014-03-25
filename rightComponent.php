@@ -10,9 +10,10 @@
   * Updated By: Nolan
   *		john.pbem@gmail.com
   *
-  * Version:	1.13n (Nolan Ed.)
+  * Version:	1.16n (Nolan Ed.)
   * Release Date: June 3, 2004
   * Patch 1.13n:  December 2009
+  * Patch 1.16n: March 2014
   *
   * Copyright (C) 2003-2004 Frank Anon for Obsidian Fleet RPG
   * Distributed under the terms of the GNU General Public License
@@ -89,7 +90,7 @@ while ( list($id1, $title, $module) = mysql_fetch_array($result) )
     }
     else if ($module == "login")
     {
-        $cryptSessionID=md5($HTTP_COOKIE_VARS["obsidian"]);
+        $cryptSessionID=md5($_COOKIE["obsidian"]);
         $qry6="SELECT userid FROM {$mpre}session WHERE session_ID='$cryptSessionID'";
         $result6=$database->openConnectionWithReturn($qry6);
         if (mysql_num_rows($result6)!=0)
@@ -103,7 +104,7 @@ while ( list($id1, $title, $module) = mysql_fetch_array($result) )
     }
     else if ($module == "usermenu")
     {
-        $cryptSessionID=md5($HTTP_COOKIE_VARS["obsidian"]);
+        $cryptSessionID=md5($_COOKIE["obsidian"]);
         $qry6="SELECT userid FROM {$mpre}session WHERE session_ID='$cryptSessionID'";
         $result6=$database->openConnectionWithReturn($qry6);
         if (mysql_num_rows($result6)!=0)

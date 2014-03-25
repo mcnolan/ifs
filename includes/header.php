@@ -7,8 +7,12 @@
   * Developer:	Frank Anon
   * 	    	fanon@obsidianfleet.net
   *
-  * Version:	1.11
+  * Updated By: Nolan
+  *		john.pbem@gmail.com
+  *
+  * Version:	1.16n (Nolan Ed.)
   * Release Date: June 3, 2004
+  * Patch 1.16n: March 2014
   *
   * Copyright (C) 2003-2004 Frank Anon for Obsidian Fleet RPG
   * Distributed under the terms of the GNU General Public License
@@ -16,6 +20,11 @@
   *
   * This file contains code from Mambo Site Server 4.0.12
   * Copyright (C) 2000 - 2002 Miro International Pty Ltd
+  *
+  * Date: 1/6/04
+  * Comments: Removed deprecated _GET and _POST references, reliance on zlib callback
+  *
+  * See CHANGELOG for patch details
   *
   * Date:	12/13/03
   * Comments: Do initialization; check if auth.php is needed; show banner
@@ -29,7 +38,7 @@ $stimer = (float)$stimer1 + (float)$stimer2;
 
 // If the relpath variable was set as a HTML form POST or GET item, this is
 // probably a hacking attempt.
-if (($HTTP_POST_VARS['relpath']) || ($HTTP_GET_VARS['relpath']))
+if (isset($_POST['relpath']) || isset($_GET['relpath']))
 {
     echo "Hacking attempt!";
     exit;
@@ -37,13 +46,13 @@ if (($HTTP_POST_VARS['relpath']) || ($HTTP_GET_VARS['relpath']))
 else
 {
    	// Start output buffering
-    ob_start("ob_gzhandler");
+    ob_start(); //"ob_gzhandler");
 
 	// Addslashes if needed
     require_once ($relpath . "includes/addslash.php");
 
     // Get ready for db queries
-	if ($database=='')
+	if (!isset($database) || $database=='')
     {
 		require ($relpath . "classes/database.php");
 		$database = new database();
@@ -54,7 +63,7 @@ else
 	{
 		$browse = getenv("HTTP_USER_AGENT");
 
-		if (preg_match("/MSIE/i", "$browse"))
+		if (preg_match("/MSIE/i", "$browsob_gzhandlere"))
 			$browsename = "MSIE";
 		elseif (preg_match("/Mozilla/i", "$browse"))
 			$browsename = "Netscape";

@@ -1,3 +1,36 @@
+1.16n PATCH - March 2014
+
+~Individual File Updates
+
+includes/header.php
+- Removed old references to HTTP_POST_VARS & HTTP_GET_VARS
+- Removed old ob_gzhandler reference to remove dependency on zlib library
+
+manual_install.php
+- Fixed some bad variable checks
+- Fixed older style mySQL code. Removed explicit myISAM references
+
+configuration.php
+- Added variable check to the $directory variable
+
+tf/lib-ship.php
+- Fixed missing old style <? tag
+
+usermenu.php
+- Removed $_COOKIE from the arguments of checkLogin(...) method
+
+sessionCookie.php
+- Added variable checking to clear warning
+
+rightComponent.php
+- Removed old references to HTTP_COOKIE_VARS
+
+administrator/index.php
+- Removed calls to deprecated session functions
+
+administrator/index2.php
+- Removed calls to deprecated session functions
+
 1.15n PATCH - April 2010
 
 ~Individual File Updates

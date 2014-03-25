@@ -5,3 +5,5 @@ All subsequent work on IFS was done without the support, knowledge or approval o
 Good Luck,
 Nolan
 
+UPDATED: March 2014
+I have applied various fixes in an attempt to get IFS running on php 5.5+. Note this software is now 10 years old (the mambo backend is from 2001!), The administration area no longer works and who knows what else. Due to the possibly considerable amount of work required to update the mambo components, this will be the final patch I issue for IFS.

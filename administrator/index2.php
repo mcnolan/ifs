@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 *	Mambo Site Server Open Source Edition Version 4.0.11
 *	Dynamic portal server and Content managment engine
@@ -19,6 +19,7 @@
 *	Comments:
 *
 * Modified December 2009 by Nolan (john.pbem@gmail.com) to work with register_globals off
+* Modified March 2014 - Modern PHP5 fixes
 **/
 
 
@@ -27,7 +28,7 @@ require ("../classes/database.php");
 $database = new database();
 
 session_start();
-session_register("session_id");
+//session_register("session_id");
 require("../includes/addslash.php");
 $current_time = time();
 $query = "UPDATE " . $mpre . "session SET time='$current_time' WHERE session_id='$session_id'";
